@@ -1,0 +1,46 @@
+﻿@using Microsoft.AspNet.Identity
+<ul class="nav" id="side-menu">
+    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <li style="padding: 70px 0 0;">
+            <a href="/home/dashboard/" class="waves-effect">
+                <i class="fa fa-bar-chart-o fa-fw"
+                   aria-hidden="true"></i>Dashboard
+            </a>
+        </li>
+    }
+    <li>
+        <a href="/artist/" class="waves-effect">
+            <i class="fa fa-user fa-fw"
+               aria-hidden="true"></i>Artistas
+        </a>
+    </li>
+    <li>
+        <a href="#" class="waves-effect">
+            <i class="fa fa-picture-o fa-fw"
+               aria-hidden="true"></i>Productos
+        </a>
+    </li>
+    <li>
+        <a href="#" class="waves-effect">
+            <i class="fa fa-shopping-cart fa-fw"
+               aria-hidden="true"></i>Carrito
+        </a>
+    </li>
+    <li>
+        <a href="#" class="waves-effect">
+            <i class="fa fa-edit fa-fw"
+               aria-hidden="true"></i>Compras
+        </a>
+    </li>
+    <li>
+        <a href="#" class="waves-effect">
+            <i class="fa fa-info-circle fa-fw" aria-hidden="true"></i>Bitácoras
+        </a>
+    </li>
+    @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <li><a href="/RolesAdmin"><i class="fa fa-random fa-fw" aria-hidden="true"></i>Roles</a></li>
+        <li><a href="/UsersAdmin"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Usuarios</a></li>
+    }
+</ul>
