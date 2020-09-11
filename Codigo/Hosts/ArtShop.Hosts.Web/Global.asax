@@ -1,1 +1,0 @@
-﻿<%@ Application Codebehind="Global.asax.cs" Inherits="ArtShop.Hosts.Web.Global" Language="C#" %>
