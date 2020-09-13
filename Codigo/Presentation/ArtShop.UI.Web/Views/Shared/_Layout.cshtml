@@ -4,13 +4,14 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Corona Admin</title>
+    <title>Spark Art Admin</title>
     <!-- plugins:css -->
-    @*<script type="text/javascript" src="/scripts/jquery.min.js"></script>*@
+
 
     <script type="text/javascript" src="~/scripts/jquery.min.js"></script>
     <link rel="stylesheet" href="~/content/assets/vendors/mdi/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="~/content/assets/vendors/css/vendor.bundle.base.css">
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
     <!-- endinject -->
     <!-- Plugin css for this page -->
     <!-- End Plugin css for this page -->
@@ -409,5 +410,6 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <!-- End custom js for this page -->
+    @RenderSection("scripts", required:false)
 </body>
 </html>

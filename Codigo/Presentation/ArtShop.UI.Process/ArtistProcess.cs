@@ -21,9 +21,14 @@ namespace ArtShop.UI.Process
             return biz.EditarArtista(artist);
         }
 
-        public Artist Add()
+        public Artist Add(Artist artist)
         {
-            return biz.nuevo();
+            return biz.nuevo(artist);
+        }
+
+        public Artist GetById(int id)
+        {
+            return biz.GetbyID(id);
         }
     }
 }

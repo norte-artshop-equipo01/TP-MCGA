@@ -21,10 +21,16 @@ namespace ArtShop.Business
             return db.Update(artist, artist.Id);
         }
 
-        public Artist nuevo()
+        public Artist nuevo(Artist artist)
         {
-            var artist = new Artist();
+            artist=db.Create(artist);
+            
             return (artist);
         }
+        public Artist GetbyID(int id)
+        {
+            return db.GetById(id);
+        }
+
     }
 }

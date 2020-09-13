@@ -1,11 +1,16 @@
 ﻿@model IEnumerable<ArtShop.Entities.Model.Artist>
 
 @{ ViewBag.Title = "Lista de artistas"; }
-    <head>
 
-        <link rel="stylesheet" href="~/content/assets/css/style.css">
-        
-    </head>
+@*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")*@
+<head>
+
+    <link rel="stylesheet" href="~/content/assets/css/style.css">
+
+
+
+</head>
 <div class="page-header">
     <h3 class="page-title">@ViewBag.Title</h3>
     <nav aria-label="breadcrumb">
@@ -17,110 +22,129 @@
 </div>
 
 
-<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
-    <div class="modal-dialog">
-        <div class="modal-header" style="background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
-            linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
-            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);">
-            <button type="button" class="close" data-dismiss="myModal" aria-hidden="true">
-                x</button>
-                <h4 class="modal-title" id="myModalLabel"></h4>
-</div>
-        <div class="modal-body" style="background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
-            linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
-            linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);">
-            <div class="modal-content" >
-                Cargando....
-            </div>
-        </div>
-    </div>
-</div>
 
 
 <div class="row">
-  <div class="col-lg-12 grid-margin stretch-card">
-    <div class="card">
-        <div class="card-body">
-            <h4 class="card-title"style="text-align:center">Listado de Artistas</h4>
-            <p>
-                <div class="col-md-12">
-                    <a id="btnNuevo" data-toggle="modal" href="#myModal" class="btn btn-success btn-rounded btn-fw"><i class="mdi mdi-account"></i>Nuevo Artista</a>
-                    @*@Html.ActionLink("Create New", "Create")*@
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title" style="text-align:center">Listado de Artistas</h4>
+                <p>
+                    <div class="col-md-12">
+                        <a id="btnNuevo" data-toggle="modal" href="#myModal" class="btn btn-success btn-rounded btn-fw"><i class="mdi mdi-account">Nuevo Artista</i></a>
+                        @*@Html.ActionLink("Create New", "Create")*@
+                    </div>
+                </p>
+                <div class="card-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <i>Action</i>
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FirstName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LastName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LifeSpan)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Country)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Description)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TotalProducts)
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        <a href="#myModal" type="button" class="btnEditar flag-icon-sd mdi mdi-lead-pencil text-info" data-toggle="modal" data-id="@item.Id"></a>
+                                        <a href="#mymodal" type="button" class="btnEliminar flag-icon-sd mdi mdi-delete text-danger" data-toggle="modal" data-id="@item.Id"></a>
+                                        @*<button href="#mymodal" type="button" class="btn btn-outline-secondary btn-rounded btn-icon " data-toggle="modal" data-id="@item.Id"><i class="mdi mdi-delete text-danger"></i></button>
+                                        *@ @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                                        @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
+                                        @Html.ActionLink("Details", "Delete", new { id = item.Id })
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FirstName)
+                                        @Html.DisplayFor(modelItem=>item.Id)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LastName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LifeSpan)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Country)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TotalProducts)
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
-            </p>
-            <div class="card-responsive">
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>
-                                <i>Action</i>
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.FirstName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.LastName)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.LifeSpan)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Country)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.Description)
-                            </th>
-                            <th>
-                                @Html.DisplayNameFor(model => model.TotalProducts)
-                            </th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                         {
-                        <tr>
-                            <td>
-                                <a href="#mymodal" type="button" class="btnEditar flag-icon-sd mdi mdi-lead-pencil text-info" data-toggle="modal" data-id="@item.Id">@*<i class="mdi mdi-lead-pencil text-info"></i>*@</a>
-                                <a href="#mymodal" type="button" class="btnEliminar flag-icon-sd mdi mdi-delete text-danger" data-toggle="modal" data-id="@item.Id">@*<i class="mdi mdi-lead-pencil text-info"></i>*@ </a>
-                                @*<button href="#mymodal" type="button" class="btn btn-outline-secondary btn-rounded btn-icon " data-toggle="modal" data-id="@item.Id"><i class="mdi mdi-delete text-danger"></i></button>
-                                @Html.ActionLink("Edit", "Edit", new { id = item.Id}) |
-        @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
-                                @Html.ActionLink("Details", "Delete", new { id = item.Id })
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.FirstName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.LastName)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.LifeSpan)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Country)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Description)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.TotalProducts)
-                            </td>
-
-                        </tr>
-                         }
-                     </tbody>
-                </table>
             </div>
         </div>
     </div>
+
+</div>
+<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+    <div class="modal-dialog">
+       <div class="modal-content">
+            <div class="modal-header" @*style="background-color: #5b6467; background-image: linear-gradient(315deg, #5b6467 0%, #8b939a 74%);"*@ @*style="background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+                  linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+                  linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);"*@>
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                 <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body" @*style="background-color: #5b6467; background-image: linear-gradient(315deg, #5b6467 0%, #8b939a 74%);"*@ @*style="background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
+                     linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
+                     linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);"*@>
+                <div id="modal-content">
+                    Cargando....
+                </div>
+                
+            </div>
+       </div>
     </div>
 </div>
 
-
 <script>
-    $("#btnNuevo").click(function (eve)
-    {
-        $("#modal-content").load("Add");
+    $('#btnNuevo').click(function (eve) {
+        $("#modal-content").load("/Artist/Add");
+    });
+
+    $('.btnEditar').click(function (eve) {
+        $("#modal-content").load("/Artist/Edit/"+$(this).data("id"));
+    });
+
+    $(document).ready(function () {
+        $('btnCancelar').click(function (eve) {
+
+        });
     });
 </script>
+
+
+
+
+
+
+

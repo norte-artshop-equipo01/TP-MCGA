@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using ArtShop.Entities;
 
 namespace ArtShop.UI.Web.Controllers
 {
@@ -14,15 +15,39 @@ namespace ArtShop.UI.Web.Controllers
         public ActionResult Index()
         {
             var artists = artistProcess.ListarTodosLosArtistas();
-            return View(artists);
+            return View("Index", artists);
         }
 
-        public ActionResult Add()
+        public PartialViewResult Add()
         {
-            var artist = artistProcess.Add();
-            return View(artist);
+            Entities.Model.Artist artist = new Entities.Model.Artist();
+            //var artist = artistProcess.Add();
+            return PartialView(artist) ;
         }
-
+        [HttpPost]
+        public ActionResult Add(ArtShop.Entities.Model.Artist artist)
+        {
+            //artist.CreatedOn= DateTime.Now;
+            //artist.CreatedBy = "emmanuel";
+            //artistProcess.Add(artist);
+            
+            var artistas = artistProcess.ListarTodosLosArtistas();
+            return View("Index", artistas);
+        }
+      
+       
+        public PartialViewResult Edit(int id)
+        {
+            var artist = artistProcess.GetById(id);
+            return PartialView(artistProcess.GetById(id));
+        }
+        [HttpPost]
+        public ActionResult Edit(ArtShop.Entities.Model.Artist artist)
+        {
+            artistProcess.EditarArtista(artist);
+            var artistas = artistProcess.ListarTodosLosArtistas();
+            return View("Index",artistas);
+        }
 
     }
 }
