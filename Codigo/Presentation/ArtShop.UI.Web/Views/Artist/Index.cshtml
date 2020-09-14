@@ -1,6 +1,6 @@
 ﻿@model IEnumerable<ArtShop.Entities.Model.Artist>
 
-@{ ViewBag.Title = "Lista de artistas"; }
+@{ ViewBag.Title = "Artistas"; }
 
 @*@Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/jqueryval")*@
@@ -32,7 +32,6 @@
                 <p>
                     <div class="col-md-12">
                         <a id="btnNuevo" data-toggle="modal" href="#myModal" class="btn btn-success btn-rounded btn-fw"><i class="mdi mdi-account">Nuevo Artista</i></a>
-                        @*@Html.ActionLink("Create New", "Create")*@
                     </div>
                 </p>
                 <div class="card-responsive">
@@ -68,12 +67,9 @@
                             {
                                 <tr>
                                     <td>
-                                        <a href="#myModal" type="button" class="btnEditar flag-icon-sd mdi mdi-lead-pencil text-info" data-toggle="modal" data-id="@item.Id"></a>
-                                        <a href="#mymodal" type="button" class="btnEliminar flag-icon-sd mdi mdi-delete text-danger" data-toggle="modal" data-id="@item.Id"></a>
-                                        @*<button href="#mymodal" type="button" class="btn btn-outline-secondary btn-rounded btn-icon " data-toggle="modal" data-id="@item.Id"><i class="mdi mdi-delete text-danger"></i></button>
-                                        *@ @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                                        @* @Html.ActionLink("Details", "Details", new { id = item.Id }) |*@
-                                        @Html.ActionLink("Details", "Delete", new { id = item.Id })
+                                        <a href="#myModal" type="button" class="btnEditar flag-icon-ml mdi mdi-lead-pencil text-info" data-toggle="modal" data-id="@item.Id"></a>
+                                        <a href="#mymodal" type="button" class="btnEliminar flag-icon-ml mdi mdi-delete text-danger" data-toggle="modal" data-id="@item.Id"></a>
+                                        <a href="#mymodal" type="button" class="btnEditar flag-icon-ml mdi mdi-account-card-details" data-toggle="modal" data-id="@item.Id"></a>
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.FirstName)
@@ -105,18 +101,14 @@
     </div>
 
 </div>
-<div id="myModal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+<div id="myModal" class="modal fade col-12" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
     <div class="modal-dialog">
-       <div class="modal-content">
-            <div class="modal-header" @*style="background-color: #5b6467; background-image: linear-gradient(315deg, #5b6467 0%, #8b939a 74%);"*@ @*style="background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
-                  linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
-                  linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);"*@>
+       <div class="modal-content col-12">
+            <div class="modal-header">
                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
                  <h4 class="modal-title" id="myModalLabel"></h4>
             </div>
-            <div class="modal-body" @*style="background-color: #5b6467; background-image: linear-gradient(315deg, #5b6467 0%, #8b939a 74%);"*@ @*style="background: linear-gradient(217deg, rgba(255,0,0,.8), rgba(255,0,0,0) 70.71%),
-                     linear-gradient(127deg, rgba(0,255,0,.8), rgba(0,255,0,0) 70.71%),
-                     linear-gradient(336deg, rgba(0,0,255,.8), rgba(0,0,255,0) 70.71%);"*@>
+            <div class="modal-body">
                 <div id="modal-content">
                     Cargando....
                 </div>

@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace IdentityArtShop.Controllers
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize/*(Roles = "Admin")*/]
     public class RolesAdminController : Controller
     {
         public RolesAdminController()

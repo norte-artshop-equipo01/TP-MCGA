@@ -8,6 +8,7 @@ using ArtShop.Entities;
 
 namespace ArtShop.UI.Web.Controllers
 {
+    [Authorize]
     public class ArtistController : Controller
     {
 

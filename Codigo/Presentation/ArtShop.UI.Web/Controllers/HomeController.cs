@@ -2,6 +2,7 @@
 
 namespace IdentityArtShop.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         [HttpGet]

@@ -1233,11 +1233,11 @@
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Account\DisplayEmail.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
-    <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Shared\_MenuPartial.cshtml" />
     <Content Include="Views\Artist\Index.cshtml" />
     <Content Include="Views\Artist\Add.cshtml" />
     <Content Include="Views\Artist\Edit.cshtml" />
+    <Content Include="Views\Shared\_Layoutlogaccount.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
