@@ -1,36 +1,92 @@
 ﻿@model IEnumerable<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
 
-@{
-    ViewBag.Title = "Index";
-}
+@{ ViewBag.Title = "Index"; }
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
+<div class="page-header">
+    <h3 class="page-title">@ViewBag.Title</h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="~/RolesAdmin/Index">Roles</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Inicio</li>
+        </ol>
+    </nav>
+</div>
 
-        </th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
-        </tr>
-    }
+<div class="col-lg-4 grid-margin stretch-card">
 
-</table>
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title" style="text-align:center">Listado de Roles</h4>
+            <p>
+                <div class="col-md-4">
+                    <a id="btnNuevo" data-toggle="modal" href="#myModal" class="btn btn-success btn-rounded btn-fw"><i class="mdi mdi-account">Nuevo Rol</i></a>
+                </div>
+            </p>
+            <div class="card-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                <label>Action</label>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    <a href="#myModal" type="button" class="btnEditar flag-icon-ml mdi mdi-lead-pencil text-info" data-toggle="modal" data-id="@item.Id"></a>
+                    <a href="#mymodal" type="button" class="btnEliminar flag-icon-ml mdi mdi-delete text-danger" data-toggle="modal" data-id="@item.Id"></a>
+                    <a href="#mymodal" type="button" class="btnEditar flag-icon-ml mdi mdi-account-card-details" data-toggle="modal" data-id="@item.Id"></a>
+                </td>
+            </tr>}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div id="myModal" class="modal fade col-12" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+    <div class="modal-dialog">
+        <div class="modal-content col-12">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <div id="modal-content">
+                    Cargando....
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#btnNuevo').click(function (eve) {
+        $("#modal-content").load("/RolesAdmin/Create");
+    });
+
+    $('.btnEditar').click(function (eve) {
+        $("#modal-content").load("/RolesAdmin/Edit/" + $(this).data("id"));
+    });
+
+    $(document).ready(function () {
+        $('btnCancelar').click(function (eve) {
+
+        });
+    });</script>

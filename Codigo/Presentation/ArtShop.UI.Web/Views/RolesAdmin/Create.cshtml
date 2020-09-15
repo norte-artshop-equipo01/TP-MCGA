@@ -1,10 +1,10 @@
 ﻿@model IdentityArtShop.Models.RoleViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Nuevo Rol";
+    Layout = null;
 }
 
-<h2>Create.</h2>
 
 
 @using (Html.BeginForm())
@@ -12,7 +12,8 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Role.</h4>
+
+        <h4>@ViewBag.Title</h4>
         <hr />
         @Html.ValidationSummary(true)
 
@@ -26,15 +27,14 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Guardar" class="btn btn-outline-primary btn-icon-text" />
+                <button type="button" class="btn btn-outline-danger btn-icon-text" data-dismiss="modal" aria-hidden="true">Cancel</button>
             </div>
         </div>
     </div>
 }
 
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
