@@ -31,6 +31,15 @@ namespace ArtShop.Business
         {
             return db.GetById(id);
         }
+        public void Borrar(Artist artist)
+        {
+            //for (int i = 0; i < artist.Product.Count; i++)
+            //{
+            //    _database.Remove(artist.Product.ElementAt(i));
+            //}
+
+            db.Delete(artist);
+        }
 
     }
 }

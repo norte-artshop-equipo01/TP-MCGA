@@ -1,6 +1,7 @@
 using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ArtShop.Entities.Model
 {
@@ -35,7 +36,9 @@ namespace ArtShop.Entities.Model
             [Required(ErrorMessage = "Requerido")]
             public int TotalProducts { get; set; }
 
-
+            [NotMapped]
+            [DisplayName("Full Name")]
+            public string FullName { get { return FirstName + " " + LastName; } }
 
         }
     }

@@ -28,9 +28,9 @@ namespace ArtShop.UI.Web.Controllers
         [HttpPost]
         public ActionResult Add(ArtShop.Entities.Model.Artist artist)
         {
-            //artist.CreatedOn= DateTime.Now;
-            //artist.CreatedBy = "emmanuel";
-            //artistProcess.Add(artist);
+            artist.CreatedOn= DateTime.Now;
+            artist.CreatedBy = "emmanuel";
+            artistProcess.AgregarArtista(artist);
             
             var artistas = artistProcess.ListarTodosLosArtistas();
             return View("Index", artistas);
@@ -49,6 +49,21 @@ namespace ArtShop.UI.Web.Controllers
             var artistas = artistProcess.ListarTodosLosArtistas();
             return View("Index",artistas);
         }
+        
+        public ActionResult Eliminar(int id)
+        {
+            var artist = artistProcess.GetById(id);
+            //artistProcess.EliminarArtista(artist);
+            //var artistas = artistProcess.ListarTodosLosArtistas();
+            return View("Eliminar", artist);
+        }
 
+        [HttpPost]
+        public ActionResult Eliminar(Entities.Model.Artist artist)
+        {
+            artistProcess.EliminarArtista(artist);
+            var artistas = artistProcess.ListarTodosLosArtistas();
+            return View("Index", artistas);
+        }
     }
 }

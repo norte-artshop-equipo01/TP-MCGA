@@ -21,7 +21,7 @@ namespace ArtShop.UI.Process
             return biz.EditarArtista(artist);
         }
 
-        public Artist Add(Artist artist)
+        public Artist AgregarArtista(Artist artist)
         {
             return biz.nuevo(artist);
         }
@@ -29,6 +29,11 @@ namespace ArtShop.UI.Process
         public Artist GetById(int id)
         {
             return biz.GetbyID(id);
+        }
+        
+        public void EliminarArtista(Artist artist)
+        {
+            biz.Borrar(artist);
         }
     }
 }

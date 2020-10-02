@@ -14,19 +14,19 @@ namespace ArtShop.Entities.Model
         [Key]
         public int Id { get; set; }
 
-        //[Required(ErrorMessage = "Requerido")]
+        [Required(ErrorMessage = "Requerido")]
         //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        //public System.DateTime CreatedOn { get; set; }
+        public System.DateTime CreatedOn { get; set; }
+
+        [Required(ErrorMessage = "Requerido")]
+        public string CreatedBy { get; set; }
 
         //[MaxLength(256, ErrorMessage = "Created By Longitud  256 caracteres")]
-        //public string CreatedBy { get; set; }
-
-        //[Required(ErrorMessage = "Requerido")]
         //[DisplayFormat(DataFormatString = "{0:dd/MM/yyyy}", ApplyFormatInEditMode = true)]
-        //public System.DateTime ChangedOn { get; set; }
+        public System.DateTime ChangedOn { get; set; }
 
-        //[MaxLength(256, ErrorMessage = "Changed By Longitud  256 caracteres")]
-        //public string ChangedBy { get; set; }
+        [MaxLength(256, ErrorMessage = "Changed By Longitud  256 caracteres")]
+        public string ChangedBy { get; set; }
 
 
         //Muestra los valores de las propiedades con fines de depuración.
