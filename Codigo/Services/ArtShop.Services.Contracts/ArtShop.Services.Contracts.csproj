@@ -37,12 +37,17 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.ServiceModel.Web" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Business\ArtShop.Business\ArtShop.Business.csproj">
+      <Project>{1809c1bc-a45f-4a71-b229-a529689ee4b4}</Project>
+      <Name>ArtShop.Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Shared\ArtShop.Entities\ArtShop.Entities.csproj">
       <Project>{549B3D8D-7C35-4F25-92E6-DF9D195310E0}</Project>
       <Name>ArtShop.Entities</Name>
