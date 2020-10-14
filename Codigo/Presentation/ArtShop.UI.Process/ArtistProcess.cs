@@ -13,7 +13,9 @@ namespace ArtShop.UI.Process
         private ArtistBusiness biz = new ArtistBusiness ();
         public List<Artist> ListarTodosLosArtistas()
         {
-            return biz.ListarTodosLosArtistas();
+            //return biz.ListarTodosLosArtistas();
+            var response = HttpGet<List<Artist>>("/api/Artist/listar", new Dictionary<string, object>(), MediaType.Json);
+            return response;
         }
 
         public Artist EditarArtista(Artist artist)
