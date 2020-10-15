@@ -13,7 +13,7 @@ namespace ArtShop.Services.Http
     public class ArtistService: ApiController
     {
         [HttpPost]
-        [Route("Agergar")]
+        [Route("Agregar")]
         public Artist Add(Artist artist)
         {
             try
@@ -33,12 +33,12 @@ namespace ArtShop.Services.Http
         }
         [HttpPut]
         [RouteAttribute ("Editar")]
-        public void Edit(Artist artist)
+        public Artist Edit(Artist artist)
         {
             try
             {
                 var artbs = new ArtistBusiness();
-                artbs.EditarArtista(artist);
+                return artbs.EditarArtista(artist);
             }
             catch (Exception ex)
             {

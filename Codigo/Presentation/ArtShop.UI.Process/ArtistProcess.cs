@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ArtShop.UI.Process
 {
-    public class ArtistProcess
+    public class ArtistProcess : ProcessComponent
     {
         private ArtistBusiness biz = new ArtistBusiness ();
         public List<Artist> ListarTodosLosArtistas()
@@ -20,12 +20,16 @@ namespace ArtShop.UI.Process
 
         public Artist EditarArtista(Artist artist)
         {
-            return biz.EditarArtista(artist);
+            //return biz.EditarArtista(artist);
+            var response = HttpPut<Artist>("/api/Artist/Editar", artist, MediaType.Json);
+            return response;
         }
 
         public Artist AgregarArtista(Artist artist)
         {
-            return biz.nuevo(artist);
+            //return biz.nuevo(artist);
+            var response = HttpPost<Artist>("/api/Artist/Agregar", artist, MediaType.Json);
+            return response;
         }
 
         public Artist GetById(int id)
@@ -35,6 +39,8 @@ namespace ArtShop.UI.Process
         
         public void EliminarArtista(Artist artist)
         {
+            var response = HttpPost<Artist>("/api/Artist/Eliminar", artist, MediaType.Json);
+            //return response;
             biz.Borrar(artist);
         }
     }

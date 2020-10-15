@@ -37,8 +37,8 @@ namespace ArtShop.Business
             //{
             //    _database.Remove(artist.Product.ElementAt(i));
             //}
-
-            db.Delete(artist);
+            
+            db.Delete(artist.Id);
         }
 
     }
