@@ -39,9 +39,10 @@ namespace ArtShop.UI.Process
         
         public void EliminarArtista(Artist artist)
         {
-            var response = HttpPost<Artist>("/api/Artist/Eliminar", artist, MediaType.Json);
+            var response = HttpDelete<Artist>("/api/Artist/Eliminar", artist.Id, MediaType.Json);
             //return response;
-            biz.Borrar(artist);
+           // biz.Borrar(artist);
         }
+
     }
 }

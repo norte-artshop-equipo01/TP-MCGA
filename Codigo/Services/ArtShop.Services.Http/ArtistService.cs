@@ -74,11 +74,13 @@ namespace ArtShop.Services.Http
         }
         [HttpDelete]
         [Route("Eliminar")]
-        public void Remove(Artist artist)
+        public void Remove(int id)
         {
             try
             {
+                
                 var artbs = new ArtistBusiness();
+                var artist = artbs.GetbyID(id);
                 artbs.Borrar(artist);
             }
             catch (Exception ex)

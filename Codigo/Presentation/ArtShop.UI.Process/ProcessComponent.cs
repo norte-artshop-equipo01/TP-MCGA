@@ -131,10 +131,11 @@ namespace ArtShop.UI.Process
             return result;
         }
 
-        public static T HttpDelete<T>(string path, T value, string mediaType)
+        public static T HttpDelete<T>(string path, int value, string mediaType)
         {
 
-            var pathAndQuery = path.EndsWith("/") ? path : path += "/";
+            var pathAndQuery = path.EndsWith("?") ? path : path += "?";
+            pathAndQuery += "id="+value.ToString();
             T result = default(T);
             // Execute the Http call.
             using (var client = new HttpClient())
@@ -142,9 +143,9 @@ namespace ArtShop.UI.Process
                 Type typeOft = typeof(T);
                 client.BaseAddress = new Uri(ConfigurationManager.AppSettings["serviceUrl"]);
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType));
-                client.DeleteAsync
-                var response = client.DeleteAsJsonAsync<T>(pathAndQuery, value).Result;
-                response.EnsureSuccessStatusCode();
+                
+                var response = client.DeleteAsync(pathAndQuery).Result;
+               response.EnsureSuccessStatusCode();
                 result = response.Content.ReadAsAsync<T>().Result;
             }
             return result;
