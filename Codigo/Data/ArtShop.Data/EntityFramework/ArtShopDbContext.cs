@@ -12,7 +12,7 @@ namespace ArtShop.Data
 {
     public class ArtShopDbContext : DbContext
     {
-        public ArtShopDbContext() : base("LocalDB")
+        public ArtShopDbContext() : base("somee")
         {
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
