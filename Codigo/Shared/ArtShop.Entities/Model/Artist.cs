@@ -15,13 +15,16 @@ using System.Runtime.Serialization;
 
 namespace ArtShop.Entities.Model
 {
+    
     [Serializable]
     public partial class Artist : IdentityBase
     {
-        public Artist()
-        {
-            this.Product = new HashSet<Product>();
-        }
+
+        //public Artist()
+        //{
+        //    this.Product = new HashSet<Product>();
+        //}
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string LifeSpan { get; set; }
@@ -31,6 +34,6 @@ namespace ArtShop.Entities.Model
         [NotMapped]
         public string FullName { get { return FirstName + " " + LastName; } }
         public bool Disabled { get; set; }
-        public virtual ICollection<Product> Product { get; set; }
+        //public virtual ICollection<Product> Product { get; set; }
     }
 }
