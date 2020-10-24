@@ -34,9 +34,11 @@ namespace ArtShop.UI.Process
 
         public Artist GetById(int id)
         {
-            return biz.GetbyID(id);
+            var response = HttpGet<Artist>("/api/Artist/GetById", id, MediaType.Json);
+            return response;
+            // return biz.GetbyID(id);
         }
-        
+
         public void EliminarArtista(Artist artist)
         {
             var response = HttpDelete<Artist>("/api/Artist/Eliminar", artist.Id, MediaType.Json);

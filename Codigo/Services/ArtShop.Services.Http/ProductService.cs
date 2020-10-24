@@ -9,19 +9,20 @@ using System.Web.Http;
 
 namespace ArtShop.Services.Http
 {
-    [RoutePrefix("api/Artist")]
-    public class ArtistService: ApiController
+
+    [RoutePrefix("api/Product")]
+    public class ProductService : ApiController
     {
         [HttpPost]
         [Route("Agregar")]
-        public Artist Add(Artist artist)
+        public Product Add(Product product)
         {
             try
             {
-                var artbs = new ArtistBusiness();
-                return artbs.nuevo(artist);
+                var pdcbs = new ProductBusiness();
+                return pdcbs.Nuevo(product);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 var httpError = new HttpResponseMessage()
                 {
@@ -32,13 +33,13 @@ namespace ArtShop.Services.Http
             }
         }
         [HttpPut]
-        [RouteAttribute ("Editar")]
-        public Artist Edit(Artist artist)
+        [RouteAttribute("Editar")]
+        public Product Edit(Product product)
         {
             try
             {
-                var artbs = new ArtistBusiness();
-                return artbs.EditarArtista(artist);
+                var pdcbs = new ProductBusiness();
+                return pdcbs.EditarProduct(product);
             }
             catch (Exception ex)
             {
@@ -54,12 +55,12 @@ namespace ArtShop.Services.Http
         }
         [HttpGet]
         [Route("Listar")]
-        public List<Artist> List()
+        public List<Product> List()
         {
             try
             {
-                var artbs = new ArtistBusiness();
-                return artbs.ListarTodosLosArtistas();
+                var pdcbs = new ProductBusiness();
+                return pdcbs.ListarTodosProductos();
             }
             catch (Exception ex)
             {
@@ -78,10 +79,10 @@ namespace ArtShop.Services.Http
         {
             try
             {
-                
-                var artbs = new ArtistBusiness();
-                var artist = artbs.GetbyID(id);
-                artbs.Borrar(artist);
+
+                var pdcbs = new ProductBusiness();
+                var product = pdcbs.GetbyID(id);
+                pdcbs.Borrar(product);
             }
             catch (Exception ex)
             {
@@ -96,12 +97,12 @@ namespace ArtShop.Services.Http
         }
         [HttpGet]
         [Route("GetById")]
-        public Artist GetById(int id)
+        public Product GetById(int id)
         {
             try
             {
-                var artbs = new ArtistBusiness();
-                return artbs.GetbyID(id);
+                var pdcbs = new ProductBusiness();
+                return pdcbs.GetbyID(id);
             }
             catch (Exception ex)
             {
@@ -116,3 +117,7 @@ namespace ArtShop.Services.Http
         }
     }
 }
+
+    
+
+
