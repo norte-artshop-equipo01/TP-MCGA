@@ -404,6 +404,12 @@ namespace IdentityArtShop.Controllers
             return View();
         }
 
+        [HttpGet]
+        public ActionResult Logout()
+        {
+            return View();
+        }
+
         #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";

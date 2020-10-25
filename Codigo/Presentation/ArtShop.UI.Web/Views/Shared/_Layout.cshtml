@@ -122,69 +122,70 @@
                         </ul>
                     </div>
                 </li>
-             @if (Request.IsAuthenticated && (User.IsInRole("Admin")||User.IsInRole("Ecommadmin")))
-            {<li class="nav-item menu-items">
-                <a class="nav-link" data-toggle="collapse" href="#admin-ecomm" aria-expanded="false" aria-controls="ui-basic1">
-                    <span class="menu-icon">
-                        <i class="mdi mdi-laptop"></i>
-                    </span>
-                    <span class="menu-title">Admin Ecomm</span>
-                    <i class="menu-arrow"></i>
-                </a>
-                <div class="collapse" id="admin-ecomm">
-                    <ul class="nav flex-column sub-menu">
-                        <li class="nav-item">
-                            <a class="nav-link" href="~/Artist/Index">
-                                <span class="menu-icon">
-                                    <i class="mdi mdi-brush"></i>
-                                </span>
-                                Artistas
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span class="menu-icon">
-                                    <i class="mdi mdi-image-album"></i>
-                                </span>
-                                Obras
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </li>}
+                @if (Request.IsAuthenticated && (User.IsInRole("Admin") || User.IsInRole("Ecommadmin")))
+                {
+    <li class="nav-item menu-items">
+        <a class="nav-link" data-toggle="collapse" href="#admin-ecomm" aria-expanded="false" aria-controls="ui-basic1">
+            <span class="menu-icon">
+                <i class="mdi mdi-laptop"></i>
+            </span>
+            <span class="menu-title">Admin Ecomm</span>
+            <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="admin-ecomm">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="~/Artist/Index">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-brush"></i>
+                        </span>
+                        Artistas
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-image-album"></i>
+                        </span>
+                        Obras
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>}
                 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                 {
-                    <li class="nav-item menu-items">
-                        <a class="nav-link" data-toggle="collapse" href="#admin-usuarios" aria-expanded="false" aria-controls="ui-basic">
-                            <span class="menu-icon">
-                                <i class="mdi mdi-laptop"></i>
-                            </span>
-                            <span class="menu-title">Admin Usuarios</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="admin-usuarios">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/UsersAdmin/Index">
-                                        <span class="menu-icon">
-                                            <i class="mdi mdi-account-box"></i>
-                                        </span>
-                                        Usuarios
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="/RolesAdmin/Index">
-                                        <span class="menu-icon">
-                                            <i class="mdi mdi-account-multiple"></i>
-                                        </span>
-                                        Roles
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
-                     //Administrators options
-                }
+    <li class="nav-item menu-items">
+        <a class="nav-link" data-toggle="collapse" href="#admin-usuarios" aria-expanded="false" aria-controls="ui-basic">
+            <span class="menu-icon">
+                <i class="mdi mdi-laptop"></i>
+            </span>
+            <span class="menu-title">Admin Usuarios</span>
+            <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="admin-usuarios">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="/UsersAdmin/Index">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-account-box"></i>
+                        </span>
+                        Usuarios
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/RolesAdmin/Index">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-account-multiple"></i>
+                        </span>
+                        Roles
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>
+//Administrators options
+}
                 <li class="nav-item menu-items">
                     <a class="nav-link" href="#">
                         <span class="menu-icon">
@@ -195,35 +196,35 @@
                 </li>
                 @if (Request.IsAuthenticated && User.IsInRole("Admin"))
                 {
-                    <li class="nav-item menu-items">
-                        <a class="nav-link" data-toggle="collapse" href="#logs" aria-expanded="false" aria-controls="ui-basic">
-                            <span class="menu-icon">
-                                <i class="mdi mdi-laptop"></i>
-                            </span>
-                            <span class="menu-title">Logs</span>
-                            <i class="menu-arrow"></i>
-                        </a>
-                        <div class="collapse" id="logs">
-                            <ul class="nav flex-column sub-menu">
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        <span class="menu-icon">
-                                            <i class="mdi mdi-exclamation"></i>
-                                        </span>
-                                        Error Logs
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#">
-                                        <span class="menu-icon">
-                                            <i class="mdi mdi-information-outline"></i>
-                                        </span>
-                                        Bitacora
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </li>
+    <li class="nav-item menu-items">
+        <a class="nav-link" data-toggle="collapse" href="#logs" aria-expanded="false" aria-controls="ui-basic">
+            <span class="menu-icon">
+                <i class="mdi mdi-laptop"></i>
+            </span>
+            <span class="menu-title">Logs</span>
+            <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="logs">
+            <ul class="nav flex-column sub-menu">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-exclamation"></i>
+                        </span>
+                        Error Logs
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <span class="menu-icon">
+                            <i class="mdi mdi-information-outline"></i>
+                        </span>
+                        Bitacora
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </li>
 }
             </ul>
         </nav>
@@ -246,7 +247,7 @@
                         </li>
                     </ul>
                     <ul class="navbar-nav navbar-nav-right">
-                        
+
                         <li class="nav-item nav-settings d-none d-lg-block">
                             <a class="nav-link" href="#">
                                 <i class="mdi mdi-view-grid"></i>
@@ -362,7 +363,7 @@
                                     </div>
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item preview-item">
+                                <a a href="#myModal2" id="logout" data-toggle="modal" class="dropdown-item preview-item">
                                     <div class="preview-thumbnail">
                                         <div class="preview-icon bg-dark rounded-circle">
                                             <i class="mdi mdi-logout text-danger"></i>
@@ -401,6 +402,22 @@
         </div>
         <!-- page-body-wrapper ends -->
     </div>
+    <div id="myModal2" class="modal fade col-12" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+        <div class="modal-dialog">
+            <div class="modal-content col-12">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                    <h4 class="modal-title" id="myModalLabel"></h4>
+                </div>
+                <div class="modal-body">
+                    <div id="modal-content2">
+                        Cargando....
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
     <script src="~/content/assets/vendors/js/vendor.bundle.base.js"></script>
@@ -416,6 +433,11 @@
     <!-- endinject -->
     <!-- Custom js for this page -->
     <!-- End custom js for this page -->
-    @RenderSection("scripts", required:false)
-</body>
-</html>
+    @RenderSection("scripts", required: false)
+    <script>
+        $('#logout').click(function (eve) {
+            $("#modal-content2").load("/Account/Logout/");
+        });
+    </script>
+</body >
+</html >

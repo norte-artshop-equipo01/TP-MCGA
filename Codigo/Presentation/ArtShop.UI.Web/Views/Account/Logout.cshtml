@@ -1,0 +1,18 @@
+﻿@{ Layout = null;}
+    <div style="text-align:center">
+        <h4>Desea cerrar sesion?</h4>
+        <h2>@User.Identity.Name</h2>
+        <hr />
+        @using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "hidden-sm hidden-xs m-r-10" }))
+        {
+           @Html.AntiForgeryToken()
+           
+           
+           <div class="form-group">
+               <div class="col-md-offset-2 col-md-10">
+                   <input type="submit" value="Aceptar" class="btn btn-outline-primary btn-icon-text" />
+                   <button type="button" class="btn btn-outline-danger btn-icon-text" data-dismiss="modal" aria-hidden="true">Cancel</button>
+               </div>
+           </div>
+        }
+    </div>
