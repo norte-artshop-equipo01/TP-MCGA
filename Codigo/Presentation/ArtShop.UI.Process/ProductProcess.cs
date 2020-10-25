@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ArtShop.UI.Process
 {
-    class ProductProcess :ProcessComponent
+     public class ProductProcess :ProcessComponent
     {
         private ProductBusiness biz = new ProductBusiness();
         public List<Product> ListarTodosLosProductos()
