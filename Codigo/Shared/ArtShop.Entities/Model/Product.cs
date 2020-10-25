@@ -34,6 +34,7 @@ namespace ArtShop.Entities.Model
         public double Price { get; set; }
 
         public int QuantitySold { get; set; }
+        public bool Disabled { get; set; }
 
         public double AvgStars { get; set; }
         public int ArtistId { get; set; }

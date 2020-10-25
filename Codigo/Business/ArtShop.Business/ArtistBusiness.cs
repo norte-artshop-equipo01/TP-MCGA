@@ -32,12 +32,15 @@ namespace ArtShop.Business
             return db.GetById(id);
         }
         public void Borrar(Artist artist)
-        {
-            //for (int i = 0; i < artist.Product.Count; i++)
-            //{
-            //    _database.Remove(artist.Product.ElementAt(i));
-            //}
-            
+
+        { BaseDataService<Product> db2 = new BaseDataService<Product>();
+            Product product = new Product();
+            for (int i = 0; i < artist.Product.Count; i++)
+            {
+                product = artist.Product.ElementAt(i);
+                db2.Delete(product);
+            }
+
             db.Delete(artist.Id);
         }
 
