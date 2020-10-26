@@ -212,8 +212,8 @@
     <Content Include="Content\assets\img\core-img\cart.png" />
     <Content Include="Content\assets\img\core-img\favicon.ico" />
     <Content Include="Content\assets\img\core-img\favorites.png" />
+    <Content Include="Content\assets\img\core-img\logo-footer.png" />
     <Content Include="Content\assets\img\core-img\logo.png" />
-    <Content Include="Content\assets\img\core-img\logo2.png" />
     <Content Include="Content\assets\img\core-img\paypal.png" />
     <Content Include="Content\assets\img\core-img\search.png" />
     <Content Include="Content\assets\img\product-img\pro-big-1.jpg" />
