@@ -44,6 +44,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestNotas", "TestNotas", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtShop.UI.Web", "Presentation\ArtShop.UI.Web\ArtShop.UI.Web.csproj", "{ACB5F5DD-56F2-4AF5-898D-A5AAE6EDD9A6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtShop.UI.Ecommerce", "Presentation\ArtShop.UI.Ecommerce\ArtShop.UI.Ecommerce.csproj", "{A473ABA0-3F48-4D8B-B9BC-C70E3CA4220E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -94,6 +96,10 @@ Global
 		{ACB5F5DD-56F2-4AF5-898D-A5AAE6EDD9A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ACB5F5DD-56F2-4AF5-898D-A5AAE6EDD9A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ACB5F5DD-56F2-4AF5-898D-A5AAE6EDD9A6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A473ABA0-3F48-4D8B-B9BC-C70E3CA4220E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A473ABA0-3F48-4D8B-B9BC-C70E3CA4220E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A473ABA0-3F48-4D8B-B9BC-C70E3CA4220E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A473ABA0-3F48-4D8B-B9BC-C70E3CA4220E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -110,6 +116,7 @@ Global
 		{9F96235C-A960-4BE1-969B-5E3C1C17EC3A} = {0A7766B7-BCF1-4913-9E3B-8FE9A2709E88}
 		{04BFAE17-3557-4B85-99BD-5CB1384CD0FD} = {8A51877F-A382-4CCB-B6E9-358C74D3B3FF}
 		{ACB5F5DD-56F2-4AF5-898D-A5AAE6EDD9A6} = {0A7766B7-BCF1-4913-9E3B-8FE9A2709E88}
+		{A473ABA0-3F48-4D8B-B9BC-C70E3CA4220E} = {0A7766B7-BCF1-4913-9E3B-8FE9A2709E88}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F69A9983-4FA4-4D6B-A65D-6884B50308F6}

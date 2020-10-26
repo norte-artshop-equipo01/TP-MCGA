@@ -1,0 +1,147 @@
+﻿@model IEnumerable<ArtShop.Entities.Model.Artist>
+
+@{ ViewBag.Title = "Artistas"; }
+
+@*@Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")*@
+<head>
+
+    <link rel="stylesheet" href="~/content/assets/css/style.css">
+
+
+
+</head>
+<div class="page-header">
+    <h3 class="page-title">@ViewBag.Title</h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="~/Artist/Index">Artista</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Inicio</li>
+        </ol>
+    </nav>
+</div>
+
+
+
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title" style="text-align:center">Listado de Artistas</h4>
+                <p>
+                    <div class="col-md-12">
+                        <a id="btnNuevo" data-toggle="modal" href="#myModal" class="btn btn-success btn-rounded btn-fw"><i class="mdi mdi-account">Nuevo Artista</i></a>
+                    </div>
+                </p>
+                <div class="card-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <i>Action</i>
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.FirstName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LastName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.LifeSpan)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Country)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Description)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.TotalProducts)
+                                </th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.HiddenFor(model => item.Id)
+                                        @Html.HiddenFor(model => item.CreatedBy)
+                                        @Html.HiddenFor(model => item.CreatedOn)
+                                        <a href="#myModal" type="button" class="btnEditar flag-icon-ml mdi mdi-lead-pencil text-info" data-toggle="modal" data-id="@item.Id"></a>
+                                        <a href="#myModal" type="button" class="btnEliminar flag-icon-ml mdi mdi-delete text-danger" data-toggle="modal" data-id="@item.Id"></a>
+                                        <a href="#mymodal" type="button" class="btnEditar flag-icon-ml mdi mdi-account-card-details" data-toggle="modal" data-id="@item.Id"></a>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.FirstName)
+                                        
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LastName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.LifeSpan)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Country)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Description)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.TotalProducts)
+                                    </td>
+
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="myModal" class="modal fade col-12" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+    <div class="modal-dialog">
+       <div class="modal-content col-12">
+            <div class="modal-header">
+                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                 <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <div id="modal-content">
+                    Cargando....
+                </div>
+                
+            </div>
+       </div>
+    </div>
+</div>
+
+<script>
+    $('#btnNuevo').click(function (eve) {
+        $("#modal-content").load("/Artist/Add");
+    });
+
+    $('.btnEditar').click(function (eve) {
+        $("#modal-content").load("/Artist/Edit/"+$(this).data("id"));
+    });
+    $('.btnEliminar').click(function (eve) {
+        $("#modal-content").load("/Artist/Eliminar/" + $(this).data("id"));
+    });
+    $(document).ready(function () {
+        $('btnCancelar').click(function (eve) {
+
+        });
+    });
+</script>
+
+
+
+
+
+
+

@@ -1,0 +1,94 @@
+﻿@model IEnumerable<IdentityArtShop.Models.ApplicationUser>
+
+@{
+    ViewBag.Title = "Usuarios";
+}
+
+    <div class="page-header">
+        <h3 class="page-title">@ViewBag.Title</h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="~/UsersAdmin/Index">Usuarios</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Inicio</li>
+            </ol>
+        </nav>
+    </div>
+
+
+<div class="row">
+    
+    <div class="col-lg-4 grid-margin stretch-card">
+        
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title" style="text-align:center">Listado de Usuarios</h4>
+                <p>
+                    <div class="col-md-4">
+                        <a id="btnNuevo" data-toggle="modal" href="#myModal" class="btn btn-success btn-rounded btn-fw"><i class="mdi mdi-account">Nuevo Usuario</i></a>
+                    </div>
+                </p>
+                <div class="card-responsive">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.UserName)
+                                </th>
+                                <th>
+                                    <label>Action</label>
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model)
+                            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        <a href="#myModal" type="button" class="btnEditar flag-icon-ml mdi mdi-lead-pencil text-info" data-toggle="modal" data-id="@item.Id"></a>
+                        <a href="#mymodal" type="button" class="btnEliminar flag-icon-ml mdi mdi-delete text-danger" data-toggle="modal" data-id="@item.Id"></a>
+                        <a href="#mymodal" type="button" class="btnEditar flag-icon-ml mdi mdi-account-card-details" data-toggle="modal" data-id="@item.Id"></a>
+                    </td>
+                </tr>
+}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="myModal" class="modal fade col-12" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+    <div class="modal-dialog">
+        <div class="modal-content col-12">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <div id="modal-content">
+                    Cargando....
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#btnNuevo').click(function (eve) {
+        $("#modal-content").load("/UsersAdmin/Create");
+    });
+
+    $('.btnEditar').click(function (eve) {
+        $("#modal-content").load("/UsersAdmin/Edit/"+$(this).data("id"));
+    });
+
+    $(document).ready(function () {
+        $('btnCancelar').click(function (eve) {
+
+        });
+    });
+</script>
