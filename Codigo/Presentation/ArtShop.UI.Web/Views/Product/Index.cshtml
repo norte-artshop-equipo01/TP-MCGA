@@ -1,0 +1,117 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@model IEnumerable<ArtShop.Entities.Model.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+<head>
+
+    <link rel="stylesheet" href="~/content/assets/css/style.css">
+
+
+
+</head>
+<div class="page-header">
+    <h3 class="page-title">@ViewBag.Title</h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="~/Product/Index">Obras</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Inicio</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title" style="text-align:center">Listado de Obras</h4>
+                <p>
+                    <div class="col-md-12">
+                        <a id="btnNuevo" data-toggle="modal" href="#myModal" class="btn btn-success btn-rounded btn-fw"><i class="mdi mdi-account">Nueva Obra</i></a>
+                    </div>
+                </p>
+                <div class="card-responsive">
+                    <table class="table table-striped">
+                        <thead>
+
+                            <tr>
+                                <th>
+                                    <i>Action</i>
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Artist.FirstName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Title)
+                                </th>
+
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Image)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Price)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.QuantitySold)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Disabled)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.AvgStars)
+                                </th>
+
+
+                            </tr>
+
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.HiddenFor(model => item.Id)
+                                        @Html.HiddenFor(model => item.CreatedBy)
+                                        @Html.HiddenFor(model => item.CreatedOn)
+                                        <a href="#myModal" type="button" class="btnEditar flag-icon-ml mdi mdi-lead-pencil text-info" data-toggle="modal" data-id="@item.Id"></a>
+                                        <a href="#myModal" type="button" class="btnEliminar flag-icon-ml mdi mdi-delete text-danger" data-toggle="modal" data-id="@item.Id"></a>
+                                        <a href="#mymodal" type="button" class="btnEditar flag-icon-ml mdi mdi-account-card-details" data-toggle="modal" data-id="@item.Id"></a>
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Artist.FirstName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Title)
+                                    </td>
+
+                                    <td>
+                                        <img src="~/Content/images/products/@item.Image"
+                                        @Html.DisplayFor(modelItem => item.Image)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Price)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.QuantitySold)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Disabled)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.AvgStars)
+                                    </td>
+
+                                </tr>
+                            }
+
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
