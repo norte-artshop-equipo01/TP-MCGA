@@ -6,17 +6,17 @@
         <!-- Single Catagory -->
         @foreach (var item in Model)
         {
+                      
+
     <div class="single-products-catagory clearfix">
-        <a href="shop.html">
+        <a href="@Url.Action("ProductDetail", "Product",new{ id = item.Id} )" >
             <img src="~/Content/images/products/@item.Image" alt="">
-            @*<img src="~/Content/assets/img/bg-img/1.jpg" alt="">*@
-            <!-- Hover Content -->
-            <div class="hover-content">
+             <div class="hover-content">
                 <div class="line"></div>
                 <p>Desde @item.Price</p>
                 <h4>@item.Title</h4>
             </div>
         </a>
-    </div> 
+    </div> @*}*@
         }                                                                                                                                                                                                                                                                          </div>
 </div>
