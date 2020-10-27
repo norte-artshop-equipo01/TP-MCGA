@@ -964,9 +964,6 @@
     <Content Include="Content\images\admin-text-dark.png" />
     <Content Include="Content\images\admin-text.png" />
     <Content Include="Content\images\favicon.png" />
-    <Content Include="Content\images\products\img1.jpg" />
-    <Content Include="Content\images\products\img2.jpg" />
-    <Content Include="Content\images\products\img3.jpg" />
     <Content Include="Content\images\varun.jpg" />
     <Content Include="Content\JSpropios\modalesScript.js" />
     <Content Include="Content\less\icons\font-awesome\.gitignore" />
@@ -1246,6 +1243,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\images\products\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
