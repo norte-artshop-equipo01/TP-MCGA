@@ -52,7 +52,7 @@ namespace ArtShop.Entities.Model
 
             [DisplayName("Image")]
             [Required(ErrorMessage = "Requerido")]
-            [MaxLength(128, ErrorMessage = "Image Longitud  128 caracteres")]
+            //[MaxLength(128, ErrorMessage = "Image Longitud  128 caracteres")]
             public string
               Image
             {

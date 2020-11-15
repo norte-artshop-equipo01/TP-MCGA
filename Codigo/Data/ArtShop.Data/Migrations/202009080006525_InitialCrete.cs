@@ -28,7 +28,7 @@
                         Id = c.Int(nullable: false, identity: true),
                         Title = c.String(nullable: false, maxLength: 100),
                         Description = c.String(nullable: false, maxLength: 2000),
-                        Image = c.String(nullable: false, maxLength: 128),
+                        Image = c.String(nullable: false, maxLength: 1024),
                         Price = c.Double(nullable: false),
                         QuantitySold = c.Int(nullable: false),
                         AvgStars = c.Double(nullable: false),

@@ -37,6 +37,7 @@
                         <a id="btnNuevo" data-toggle="modal" href="#myModal" class="btn btn-success btn-rounded btn-fw"><i class="mdi mdi-account">Nueva Obra</i></a>
                     </div>
                 </p>
+                <p><a href="~/Product/Add">nuevo</a></p>
                 <div class="card-responsive">
                     <table class="table table-striped">
                         <thead>
@@ -73,45 +74,81 @@
 
                             @foreach (var item in Model)
                             {
-                                <tr>
-                                    <td>
-                                        @Html.HiddenFor(model => item.Id)
-                                        @Html.HiddenFor(model => item.CreatedBy)
-                                        @Html.HiddenFor(model => item.CreatedOn)
-                                        <a href="#myModal" type="button" class="btnEditar flag-icon-ml mdi mdi-lead-pencil text-info" data-toggle="modal" data-id="@item.Id"></a>
-                                        <a href="#myModal" type="button" class="btnEliminar flag-icon-ml mdi mdi-delete text-danger" data-toggle="modal" data-id="@item.Id"></a>
-                                        <a href="#mymodal" type="button" class="btnEditar flag-icon-ml mdi mdi-account-card-details" data-toggle="modal" data-id="@item.Id"></a>
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Artist.FirstName)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Title)
-                                    </td>
+                                    var imgSrc = String.Format("data:image/gif;base64,{0}", item.Image);
+                            
+                            <tr>
+                                <td>
+                                    @Html.HiddenFor(model => item.Id)
+                                    @Html.HiddenFor(model => item.CreatedBy)
+                                    @Html.HiddenFor(model => item.CreatedOn)
+                                    <a href="#myModal" type="button" class="btnEditar flag-icon-ml mdi mdi-lead-pencil text-info" data-toggle="modal" data-id="@item.Id"></a>
+                                    <a href="#myModal" type="button" class="btnEliminar flag-icon-ml mdi mdi-delete text-danger" data-toggle="modal" data-id="@item.Id"></a>
+                                    <a href="#mymodal" type="button" class="btnEditar flag-icon-ml mdi mdi-account-card-details" data-toggle="modal" data-id="@item.Id"></a>
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Artist.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Title)
+                                </td>
 
-                                    <td>
-                                        <img src="~/Content/images/products/@item.Image"
-                                        @Html.DisplayFor(modelItem => item.Image)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Price)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.QuantitySold)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Disabled)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.AvgStars)
-                                    </td>
+                                <td>
+                                    <img src="@imgSrc"  />
+                                         
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.QuantitySold)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Disabled)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AvgStars)
+                                </td>
 
-                                </tr>
-                            }
+                            </tr>
+                        }
 
-                    </table>
+</table>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<div id="myModal" class="modal fade col-12" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display:none">
+    <div class="modal-dialog">
+        <div class="modal-content col-12">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">x</button>
+                <h4 class="modal-title" id="myModalLabel"></h4>
+            </div>
+            <div class="modal-body">
+                <div id="modal-content">
+                    Cargando....
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#btnNuevo').click(function (eve) {
+        $("#modal-content").load("/Product/Add");
+    });
+
+    $('.btnEditar').click(function (eve) {
+        $("#modal-content").load("/Prodcut/Edit/"+$(this).data("id"));
+    });
+    $('.btnEliminar').click(function (eve) {
+        $("#modal-content").load("/Product/Eliminar/" + $(this).data("id"));
+    });
+    $(document).ready(function () {
+        $('btnCancelar').click(function (eve) {
+
+        });
+    });
+</script>
