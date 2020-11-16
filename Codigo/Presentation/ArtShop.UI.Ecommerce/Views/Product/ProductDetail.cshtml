@@ -1,6 +1,7 @@
 ﻿@model ArtShop.Entities.Model.Product
 
 @{
+    var id = Model.Id;
     var image = Model.Image;
     var price = Model.Price;
     var title = Model.Title;
@@ -40,8 +41,8 @@
                        </ol>*@
                         <div class="carousel-inner">
                             <div class="carousel-item active">
-                                <a class="gallery_img" href="~/Content/images/products/@image">
-                                    <img class="d-block w-100" src="~/Content/images/products/@image" alt="First slide">
+                                <a class="gallery_img" href="~/Content/images/products/@id">
+                                    <img class="d-block w-100" src= @String.Format("data:image/gif;base64,{0}", @image) alt="First slide">
                                 </a>
                             </div>
                             @*<div class="carousel-item">
