@@ -10,7 +10,7 @@
 
     <div class="single-products-catagory clearfix">
         <a href="@Url.Action("ProductDetail", "Product",new{ id = item.Id} )" >
-            <img src="~/Content/images/products/@item.Image" alt="">
+            <img src= @String.Format("data:image/gif;base64,{0}", item.Image) alt="">
              <div class="hover-content">
                 <div class="line"></div>
                 <p>Desde @item.Price</p>
