@@ -68,10 +68,12 @@
             <nav class="amado-nav">
                 <ul>
                     <li class="active"><a href="/home/">Inicio</a></li>
+                    <li><a href="/Product/">Productos</a></li>
                     <li><a href="#">Shop</a></li>
-                    @if (Request.IsAuthenticated) {
-                    <li><a href="#">Carrito</a></li>
-                    <li><a href="#">Pagar</a></li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li><a href="#">Carrito</a></li>
+                        <li><a href="#">Pagar</a></li>
                     }
                 </ul>
                 @Html.Partial("_LoginPartial")

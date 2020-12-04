@@ -16,6 +16,7 @@ namespace ArtShop.Data
             IOrderedQueryable<T>> orderFunction = null,
             string includeModels = "");
         T GetById(int id);
+        //List<T> Find<T>(Func<T, bool> filter) where T : class;
         T Create(T entity);
         T Update(T entity, object key);
         void Delete(T entity);

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<ArtShop.Entities.Model.Product>
+
+<div class="products-catagories-area clearfix">
+    <div class="amado-pro-catagory clearfix">
+
+        <!-- Single Catagory -->
+        @foreach (var item in Model)
+        {
+
+
+            <div class="single-products-catagory clearfix">
+                <a href="@Url.Action("ProductDetail", "Product",new{ id = item.Id} )">
+                    <img src=@String.Format("data:image/gif;base64,{0}", item.Image) alt="">
+                    <div class="hover-content">
+                        <div class="line"></div>
+                        <p>Desde $ @item.Price</p>
+                        <h4>@item.Title</h4>
+                    </div>
+                </a>
+            </div> 
+        }
+    </div>
+</div>

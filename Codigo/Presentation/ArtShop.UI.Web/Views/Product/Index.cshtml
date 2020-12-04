@@ -47,7 +47,7 @@
                                     <i>Action</i>
                                 </th>
                                 <th>
-                                    @Html.DisplayNameFor(model => model.Artist.FirstName)
+                                    @Html.DisplayNameFor(model => model.Artist.FullName)
                                 </th>
                                 <th>
                                     @Html.DisplayNameFor(model => model.Title)
@@ -86,14 +86,15 @@
                                     <a href="#mymodal" type="button" class="btnEditar flag-icon-ml mdi mdi-account-card-details" data-toggle="modal" data-id="@item.Id"></a>
                                 </td>
                                 <td>
-                                    @Html.DisplayFor(modelItem => item.Artist.FirstName)
+                                    @Html.DisplayFor(modelItem => item.Artist.FullName)
+                                    
                                 </td>
                                 <td>
                                     @Html.DisplayFor(modelItem => item.Title)
                                 </td>
 
                                 <td>
-                                    <img src="@imgSrc"  />
+                                    <img src="@imgSrc"  style="width:50px;height:50px"/>
                                          
                                 </td>
                                 <td>
@@ -141,7 +142,7 @@
     });
 
     $('.btnEditar').click(function (eve) {
-        $("#modal-content").load("/Prodcut/Edit/"+$(this).data("id"));
+        $("#modal-content").load("/Product/Edit/"+$(this).data("id"));
     });
     $('.btnEliminar').click(function (eve) {
         $("#modal-content").load("/Product/Eliminar/" + $(this).data("id"));

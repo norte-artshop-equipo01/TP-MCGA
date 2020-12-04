@@ -40,6 +40,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArtistBusiness.cs" />
+    <Compile Include="CartBusiness.cs" />
+    <Compile Include="CartItemBusiness.cs" />
+    <Compile Include="OrderBusiness.cs" />
     <Compile Include="ProductBusiness.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

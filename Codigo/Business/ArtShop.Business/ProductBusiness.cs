@@ -10,10 +10,16 @@ namespace ArtShop.Business
 {
     public class ProductBusiness
     {
+        private BaseDataService<Artist> db2 = new BaseDataService<Artist>();
         private BaseDataService<Product> db = new BaseDataService<Product>();
         public List<Product> ListarTodosProductos()
         {
-            return db.Get();
+            var product = db.Get();
+            foreach (Product prod in product)
+            {
+                prod.Artist = db2.GetById(prod.ArtistId);
+            }
+            return product;
         }
 
         public Product EditarProduct(Product product)

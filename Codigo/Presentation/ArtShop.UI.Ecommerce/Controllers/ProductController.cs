@@ -14,7 +14,7 @@ namespace ArtShop.UI.Ecommerce.Controllers
         // GET: Product
         public ActionResult Index()
         {
-            return View();
+            return View(prd.ListarTodosLosProductos());
         }
         public void ProductDetail2(int id)
         {

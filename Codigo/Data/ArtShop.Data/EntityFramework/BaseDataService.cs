@@ -97,5 +97,6 @@ namespace ArtShop.Data
             _db.SaveChanges();
             return entity;
         }
+       
     }
 }
