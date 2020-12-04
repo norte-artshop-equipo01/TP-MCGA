@@ -55,6 +55,7 @@
     <Compile Include="ArtistService.cs" />
     <Compile Include="CartItemServices.cs" />
     <Compile Include="CartServices.cs" />
+    <Compile Include="OrderService.cs" />
     <Compile Include="ProductService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

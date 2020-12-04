@@ -23,8 +23,6 @@ namespace ArtShop.UI.Ecommerce.Controllers
         }
         public ActionResult ProductDetail(Product product)
         {
-            
-            
             return View(prd.GetById(product.Id));
         }
     }

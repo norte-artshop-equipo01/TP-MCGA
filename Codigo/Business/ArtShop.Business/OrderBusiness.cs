@@ -11,6 +11,7 @@ namespace ArtShop.Business
     public class OrderBusiness
     {
         private BaseDataService<Order> db = new BaseDataService<Order>();
+        private BaseDataService<OrderDetail> db2 = new BaseDataService<OrderDetail>();
         public List<Order> ListarTodas()
         {
             return db.Get();
@@ -34,13 +35,13 @@ namespace ArtShop.Business
         public void Borrar(Order order)
 
         {
-            //BaseDataService<Product> db2 = new BaseDataService<Product>();
-            //Product product = new Product();
-            //for (int i = 0; i < artist.Product.Count; i++)
-            //{
-            //    product = artist.Product.ElementAt(i);
-            //    db2.Delete(product);
-            //}
+            
+            for (int i = 0; i < order.OrderDetail.Count(); i++)
+            {
+                
+                db2.Delete(order.OrderDetail.ElementAt(i));
+                
+            }
 
             db.Delete(order.Id);
         }
