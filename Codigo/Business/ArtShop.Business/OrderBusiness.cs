@@ -14,7 +14,14 @@ namespace ArtShop.Business
         private BaseDataService<OrderDetail> db2 = new BaseDataService<OrderDetail>();
         public List<Order> ListarTodas()
         {
-            return db.Get();
+            var orderlist = db.Get();
+            foreach (Order order in orderlist)
+            {
+                order.OrderDetail = db2.Get(x => x.OrderId == order.Id).ToList();
+                /*order.ItemCount = order.OrderDetail.Count;*/
+            }
+            return orderlist;
+           
         }
 
         public Order EditarOrder(Order order)
@@ -30,7 +37,9 @@ namespace ArtShop.Business
         }
         public Order GetbyID(int id)
         {
-            return db.GetById(id);
+            var order = db.GetById(id);
+            order.OrderDetail= db2.Get(x => x.OrderId == order.Id).ToList();
+            return order;
         }
         public void Borrar(Order order)
 

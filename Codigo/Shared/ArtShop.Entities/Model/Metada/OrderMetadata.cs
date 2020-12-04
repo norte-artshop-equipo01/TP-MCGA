@@ -16,22 +16,22 @@ namespace ArtShop.Entities.Model
             /// <summary>
             /// Id
             /// </summary>        
-            [DisplayName("Id")]
-            [Required(ErrorMessage = "Requerido")]
-            public int
-              Id
-            {
-                get;
-                set;
-            }
+            //[DisplayName("Id")]
+            //[Required(ErrorMessage = "Requerido")]
+            //public int
+            //  Id
+            //{
+            //    get;
+            //    set;
+            //}
 
             /// <summary>
             /// User Id
             /// </summary>        
-            [DisplayName("User Name")]
+            [DisplayName("User Id")]
             [Required(ErrorMessage = "Requerido")]
-            [MaxLength(128, ErrorMessage = "User Id Longitud  128 caracteres")]
-            public string UserName { get; set; }
+            
+            public int UserId { get; set; }
 
             /// <summary>
             /// Order Date

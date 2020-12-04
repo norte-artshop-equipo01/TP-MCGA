@@ -14,13 +14,16 @@ using System.Runtime.Serialization;
 
 namespace ArtShop.Entities.Model
 {
-    
-    
+
+
     [Serializable]
-    
+
     public partial class Order : IdentityBase
     {
-
+        public Order()
+        {
+            this.Disabled = false;
+        }
         public DateTime OrderDate { get; set; }
 
         public double TotalPrice { get; set; }
@@ -29,7 +32,9 @@ namespace ArtShop.Entities.Model
 
         public int ItemCount { get; set; }
 
-        public string UserName { get; set; }
+        public int UserId { get; set; }
+
+        public bool Disabled { get; set; }
 
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
     }

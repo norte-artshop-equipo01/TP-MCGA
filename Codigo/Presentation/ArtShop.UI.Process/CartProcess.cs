@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ArtShop.UI.Process
 {
-    class CartProcess : ProcessComponent
+    public class CartProcess : ProcessComponent
     {
         public List<Cart> ListarCart()
         {
@@ -40,5 +40,13 @@ namespace ArtShop.UI.Process
             var response = HttpDelete<Cart>("/api/Cart/Eliminar", cart.Id, MediaType.Json);
            
         }
+
+        public Cart GetByCookie(string cookie)
+        {
+            var response = HttpGet<Cart>("/api/Cart/GetByCookie", cookie, MediaType.Json);
+            return response;
+
+        }
+
     }
 }

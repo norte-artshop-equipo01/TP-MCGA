@@ -11,9 +11,15 @@ namespace ArtShop.Business
     public class CartItemBusiness
     {
         private BaseDataService<CartItem> db = new BaseDataService<CartItem>();
+        private BaseDataService<Product> db2 = new BaseDataService<Product>();
         public List<CartItem> ListarTodosCartItems()
         {
-            return db.Get();
+            var cartitemlistt = db.Get();
+            foreach (CartItem cartitem in cartitemlistt)
+            {
+                cartitem.Product = db2.GetById(cartitem.ProductId);
+            }
+            return cartitemlistt;
         }
 
         public CartItem Editar(CartItem cartitem)
@@ -29,7 +35,9 @@ namespace ArtShop.Business
         }
         public CartItem GetbyID(int id)
         {
-            return db.GetById(id);
+            var cartitem= db.GetById(id);
+            cartitem.Product = db2.GetById(cartitem.ProductId);
+            return cartitem;
         }
         public void Borrar(CartItem cartitem)
         {

@@ -135,7 +135,7 @@ namespace ArtShop.Services.Http
         }
         [HttpPut]
         [RouteAttribute("Editar_Linea_Orden")]
-        public OrderDetail Edit(OrderDetail orderdetail)
+        public OrderDetail EditOrderDetail(OrderDetail orderdetail)
         {
             try
             {
@@ -196,5 +196,45 @@ namespace ArtShop.Services.Http
             }
         }
 
+        [HttpGet]
+        [Route("GetLineasOrden_by_OrdenID")]
+        public List<OrderDetail> GetOrderDetail_By_OrderID(int id)
+        {
+            try
+            {
+                var orderdetailbs = new OrderDetailBusiness();
+                return orderdetailbs.GetbyOrderId(id);
+            }
+            catch (Exception ex)
+            {
+                var httpError = new HttpResponseMessage()
+                {
+                    StatusCode = (HttpStatusCode)422,
+                    ReasonPhrase = ex.Message
+                };
+
+                throw new HttpResponseException(httpError);
+            }
+        }
+        [HttpGet]
+        [Route("Listar_Todas_Lineas")]
+        public List<OrderDetail> List_OrderDetail()
+        {
+            try
+            {
+                var ordedetailrbs = new OrderDetailBusiness();
+                return ordedetailrbs.ListarTodas();
+            }
+            catch (Exception ex)
+            {
+                var httpError = new HttpResponseMessage()
+                {
+                    StatusCode = (HttpStatusCode)422,
+                    ReasonPhrase = ex.Message
+                };
+
+                throw new HttpResponseException(httpError);
+            }
+        }
     }
 }
