@@ -114,5 +114,25 @@ namespace ArtShop.Services.Http
                 throw new HttpResponseException(httpError);
             }
         }
+        [HttpGet]
+        [Route("GetByCartId")]
+        public List<CartItem> GetByCartId(int id)
+        {
+            try
+            {
+                var cartitembs = new CartItemBusiness();
+                return cartitembs.GetByCartId(id);
+            }
+            catch (Exception ex)
+            {
+                var httpError = new HttpResponseMessage()
+                {
+                    StatusCode = (HttpStatusCode)422,
+                    ReasonPhrase = ex.Message
+                };
+
+                throw new HttpResponseException(httpError);
+            }
+        }
     }
 }

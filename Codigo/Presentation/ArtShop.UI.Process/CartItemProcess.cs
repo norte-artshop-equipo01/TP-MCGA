@@ -33,6 +33,12 @@ namespace ArtShop.UI.Process
             return response;
 
         }
+        public List<CartItem> GetByCartId(int id)
+        {
+            var response = HttpGet<List<CartItem>>("/api/CartItem/GetByCartId", id, MediaType.Json);
+            return response;
+
+        }
 
         public void EliminarCartItem(CartItem cartitem)
         {

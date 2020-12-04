@@ -39,6 +39,19 @@ namespace ArtShop.Business
             cartitem.Product = db2.GetById(cartitem.ProductId);
             return cartitem;
         }
+
+        public List<CartItem> GetByCartId(int id)
+        {
+            var listitem= db.Get().Where(x => x.CartId == id).ToList();
+            foreach (CartItem item in listitem)
+            {
+                item.Product = db2.GetById(item.ProductId);
+            }
+
+            return listitem;
+        }
+
+
         public void Borrar(CartItem cartitem)
         {
             db.Delete(cartitem.Id);
