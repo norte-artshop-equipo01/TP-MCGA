@@ -172,9 +172,14 @@ namespace ArtShop.UI.Process
         }
         public static T HttpGet<T>(string path, string value, string mediaType)
         {
+            //var split = value.Split(new String[] { "@" }, 2, StringSplitOptions.RemoveEmptyEntries);
+            //if (split[1] != null)
+            //{
+            //    value = split[0] + "%40" + split[1];
+            //}
 
             var pathAndQuery = path.EndsWith("?") ? path : path += "?";
-            pathAndQuery += "id=" + value.ToString();
+            pathAndQuery += "cookie=" + value.ToString();
             T result = default(T);
             // Execute the Http call.
             using (var client = new HttpClient())
@@ -184,7 +189,7 @@ namespace ArtShop.UI.Process
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType));
 
                 var response = client.GetAsync(pathAndQuery).Result;
-                response.EnsureSuccessStatusCode();
+                //response.EnsureSuccessStatusCode(); 
                 result = response.Content.ReadAsAsync<T>().Result;
             }
             return result;

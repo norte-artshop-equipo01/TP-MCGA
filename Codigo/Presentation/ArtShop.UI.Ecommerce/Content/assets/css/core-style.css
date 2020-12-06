@@ -738,6 +738,13 @@ img {
       position: relative;
       z-index: 1;
       padding: 30px 20px; }
+    .cart-summarypersonal {
+    background-color: #f5f7fa;
+    margin-top: 10px;
+    position: relative;
+    z-index: 1;
+    padding: 30px 20px;
+}
       .main-content-wrapper .cart-table-area .cart-summary h5 {
         font-size: 18px;
         margin-bottom: 0; }

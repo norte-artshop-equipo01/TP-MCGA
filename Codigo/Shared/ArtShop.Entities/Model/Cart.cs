@@ -19,6 +19,7 @@ namespace ArtShop.Entities.Model
     {
         public Cart()
         {
+            this.Disabled = false;
             this.CartItem = new HashSet<CartItem>();
         }
 
@@ -27,6 +28,8 @@ namespace ArtShop.Entities.Model
         public DateTime CartDate { get; set; }
 
         public int ItemCount { get; set; }
+
+        public bool Disabled { get; set; }
 
         public virtual ICollection<CartItem> CartItem { get; set; }
 

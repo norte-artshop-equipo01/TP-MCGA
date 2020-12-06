@@ -15,20 +15,24 @@ namespace ArtShop.Business
         public List<Cart> ListarTodas()
         {
             var cart = db.Get();
-            foreach (Cart car in cart)
-            {
-                car.CartItem=(db2.Get(x=>x.CartId==car.Id).ToList());
-                car.ItemCount = car.CartItem.Count();
-            }
+            //foreach (Cart car in cart)
+            //{
+            //    car.CartItem = (db2.Get(x => x.CartId == car.Id).ToList());
+            //    car.ItemCount = car.CartItem.Count();
+            //}
             return cart;
             
         }
-        public Cart GetbyCookie (string cookie)
+        public Cart GetbyCookie(string cookie)
         {
             var cart= db.Get(x => x.Cookie == cookie).FirstOrDefault();
-            cart.CartItem = db2.Get(x => x.CartId == cart.Id).ToList();
-            cart.ItemCount = cart.CartItem.Count();
-            return cart;
+            if (cart != null)
+            {
+                cart.CartItem = db2.Get(x => x.CartId == cart.Id).ToList();
+                cart.ItemCount = cart.CartItem.Count();
+                return cart;
+            }
+            return db.Get(x => x.Cookie == cookie).FirstOrDefault();
         }
 
         public Cart Editar(Cart cart)
