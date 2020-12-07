@@ -10,13 +10,13 @@ namespace ArtShop.Entities.Model
     {
         public class ShippingMetadata
         {
-            //[DisplayName("Id")]
-            //[Required(ErrorMessage = "Requerido")]
-            //public int Id
-            //{
-            //    get;
-            //    set;
-            //}
+            [DisplayName("Id")]
+            [Required(ErrorMessage = "Requerido")]
+            public int Id
+            {
+                get;
+                set;
+            }
 
             [DisplayName("FirstName")]
             [Required(ErrorMessage = "Requerido")]

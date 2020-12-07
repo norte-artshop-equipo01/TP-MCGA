@@ -27,7 +27,7 @@ double Total = ViewBag.Total;
                             { var qt1 = item.Id;
                                 @Html.HiddenFor(modelitem => item.Id)
                                 @Html.HiddenFor(modelitem => item.CreatedBy)
-                                @Html.HiddenFor(modelitem => item.CreatedBy)
+                                @Html.HiddenFor(modelitem => item.CreatedOn)
                                 <tr>
                                     <td class="cart_product_img">
                                         <a href="#"><img src=@String.Format("data:image/gif;base64,{0}", item.Product.Image) alt="Product"></a>
