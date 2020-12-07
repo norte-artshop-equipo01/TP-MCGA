@@ -32,10 +32,14 @@ namespace ArtShop.Entities.Model
 
         public int ItemCount { get; set; }
 
-        public int UserId { get; set; }
+        public int ShippingId { get; set; }
+
+        public string Email { get; set; }
 
         public bool Disabled { get; set; }
 
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
+
+        public virtual Shipping Shipping { get; set; }
     }
 }

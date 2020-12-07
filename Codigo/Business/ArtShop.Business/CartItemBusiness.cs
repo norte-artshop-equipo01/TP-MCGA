@@ -52,9 +52,9 @@ namespace ArtShop.Business
         }
 
 
-        public void Borrar(CartItem cartitem)
+        public void Borrar(int id)
         {
-            db.Delete(cartitem.Id);
+            db.Delete(id);
         }
     }
 }

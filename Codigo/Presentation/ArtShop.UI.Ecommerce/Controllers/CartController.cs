@@ -119,6 +119,16 @@ namespace ArtShop.UI.Ecommerce.Controllers
             return View(listadoitems);
             
         }
+        
+        public ActionResult Eliminar(int id)
+        {
+           itemsprocess.EliminarCartItem(id);
+            var carrito = cartprocess.GetByCookie(User.Identity.Name);
+
+            ViewBag.Total = sum_items(carrito.CartItem.ToList());
+            return View("Index",carrito.CartItem.ToList());
+
+        }
 
     }
 }

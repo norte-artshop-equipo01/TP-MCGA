@@ -12,13 +12,14 @@ namespace ArtShop.Business
     {
         private BaseDataService<Order> db = new BaseDataService<Order>();
         private BaseDataService<OrderDetail> db2 = new BaseDataService<OrderDetail>();
+        private BaseDataService<Shipping> dbship = new BaseDataService<Shipping>();
         public List<Order> ListarTodas()
         {
             var orderlist = db.Get();
             foreach (Order order in orderlist)
             {
                 order.OrderDetail = db2.Get(x => x.OrderId == order.Id).ToList();
-                /*order.ItemCount = order.OrderDetail.Count;*/
+                order.Shipping = dbship.GetById(order.ShippingId);
             }
             return orderlist;
            
@@ -39,6 +40,7 @@ namespace ArtShop.Business
         {
             var order = db.GetById(id);
             order.OrderDetail= db2.Get(x => x.OrderId == order.Id).ToList();
+            order.Shipping = dbship.GetById(order.ShippingId);
             return order;
         }
         public void Borrar(Order order)

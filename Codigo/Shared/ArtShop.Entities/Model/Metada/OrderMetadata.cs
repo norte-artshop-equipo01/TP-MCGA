@@ -16,22 +16,34 @@ namespace ArtShop.Entities.Model
             /// <summary>
             /// Id
             /// </summary>        
-            //[DisplayName("Id")]
-            //[Required(ErrorMessage = "Requerido")]
-            //public int
-            //  Id
-            //{
-            //    get;
-            //    set;
-            //}
+            [DisplayName("Id")]
+            [Required(ErrorMessage = "Requerido")]
+            public int
+              Id
+            {
+                get;
+                set;
+            }
 
             /// <summary>
             /// User Id
             /// </summary>        
-            [DisplayName("User Id")]
+            [DisplayName("Shipping Addres")]
             [Required(ErrorMessage = "Requerido")]
             
-            public int UserId { get; set; }
+            public int ShippingId { get; set; }
+
+
+            [DisplayName("Email")]
+            [Required(ErrorMessage = "Requerido")]
+            [MaxLength(100, ErrorMessage = "Cookie Longitud  100 caracteres")]
+            public string
+             Email
+            {
+                get;
+                set;
+            }
+
 
             /// <summary>
             /// Order Date

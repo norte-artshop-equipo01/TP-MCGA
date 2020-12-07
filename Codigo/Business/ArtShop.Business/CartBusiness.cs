@@ -15,11 +15,11 @@ namespace ArtShop.Business
         public List<Cart> ListarTodas()
         {
             var cart = db.Get();
-            //foreach (Cart car in cart)
-            //{
-            //    car.CartItem = (db2.Get(x => x.CartId == car.Id).ToList());
-            //    car.ItemCount = car.CartItem.Count();
-            //}
+            foreach (Cart car in cart)
+            {
+                car.CartItem = (db2.Get(x => x.CartId == car.Id).ToList());
+                car.ItemCount = car.CartItem.Count();
+            }
             return cart;
             
         }
@@ -49,6 +49,14 @@ namespace ArtShop.Business
         }
         public Cart GetbyID(int id)
         {
+            var cart = db.GetById(id);
+                if (cart != null)
+            {
+                cart.CartItem = db2.Get(x => x.CartId == cart.Id).ToList();
+                cart.ItemCount = cart.CartItem.Count();
+                return cart;
+            }
+
             return db.GetById(id);
         }
 

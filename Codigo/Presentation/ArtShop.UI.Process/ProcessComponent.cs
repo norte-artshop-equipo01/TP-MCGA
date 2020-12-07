@@ -145,7 +145,7 @@ namespace ArtShop.UI.Process
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue(mediaType));
                 
                 var response = client.DeleteAsync(pathAndQuery).Result;
-               response.EnsureSuccessStatusCode();
+                response.EnsureSuccessStatusCode();
                 result = response.Content.ReadAsAsync<T>().Result;
             }
             return result;

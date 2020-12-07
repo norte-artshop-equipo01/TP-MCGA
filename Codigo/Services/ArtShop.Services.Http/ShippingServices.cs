@@ -9,17 +9,18 @@ using System.Web.Http;
 
 namespace ArtShop.Services.Http
 {
-    [RoutePrefix("api/CartItem")]
-    public class CartItemService : ApiController
+
+    [RoutePrefix("api/Shipping")]
+    public class ShippingService : ApiController
     {
         [HttpPost]
         [Route("Agregar")]
-        public CartItem Add(CartItem cartitem)
+        public Shipping Add(Shipping ship)
         {
             try
             {
-                var cartitembs = new CartItemBusiness();
-                return cartitembs.nuevo(cartitem);
+                var shipbs = new ShippingBusiness();
+                return shipbs.nuevo(ship);
             }
             catch (Exception ex)
             {
@@ -33,12 +34,12 @@ namespace ArtShop.Services.Http
         }
         [HttpPut]
         [RouteAttribute("Editar")]
-        public CartItem Edit(CartItem cartitem)
+        public Shipping Edit(Shipping ship)
         {
             try
             {
-                var cartitembs = new CartItemBusiness();
-                return cartitembs.Editar(cartitem);
+                var shipbs = new ShippingBusiness();
+                return shipbs.Editar(ship);
             }
             catch (Exception ex)
             {
@@ -54,12 +55,12 @@ namespace ArtShop.Services.Http
         }
         [HttpGet]
         [Route("Listar")]
-        public List<CartItem> List()
+        public List<Shipping> List()
         {
             try
             {
-                var cartitembs = new CartItemBusiness();
-                return cartitembs.ListarTodosCartItems();
+                var shipbs = new ShippingBusiness();
+                return shipbs.ListarTodas();
             }
             catch (Exception ex)
             {
@@ -74,24 +75,14 @@ namespace ArtShop.Services.Http
         }
         [HttpDelete]
         [Route("Eliminar")]
-        public HttpResponseMessage Remove(int id)
+        public void Remove(int id)
         {
             try
             {
 
-                var cartitembs = new CartItemBusiness();
-               
-                
-                    cartitembs.Borrar(id);
-                
-                var httpok = new HttpResponseMessage()
-                    {
-                        StatusCode = (HttpStatusCode)200,
-                        ReasonPhrase = "Item Eliminado"
-                    };
-                    return httpok;
-                
-
+                var shipbs = new ShippingBusiness();
+                var ship = shipbs.GetbyID(id);
+                shipbs.Borrar(ship);
             }
             catch (Exception ex)
             {
@@ -106,12 +97,12 @@ namespace ArtShop.Services.Http
         }
         [HttpGet]
         [Route("GetById")]
-        public CartItem GetById(int id)
+        public Shipping GetById(int id)
         {
             try
             {
-                var cartitembs = new CartItemBusiness();
-                return cartitembs.GetbyID(id);
+                var shipbs = new ShippingBusiness();
+                return shipbs.GetbyID(id);
             }
             catch (Exception ex)
             {
@@ -124,14 +115,13 @@ namespace ArtShop.Services.Http
                 throw new HttpResponseException(httpError);
             }
         }
-        [HttpGet]
-        [Route("GetByCartId")]
-        public List<CartItem> GetByCartId(int id)
+        [Route("GetByCookie")]
+        public List<Shipping> GetbyCookie(string cookie)
         {
             try
             {
-                var cartitembs = new CartItemBusiness();
-                return cartitembs.GetByCartId(id);
+                var shipbs = new ShippingBusiness();
+                return shipbs.GetbyCookie(cookie);
             }
             catch (Exception ex)
             {
@@ -145,4 +135,5 @@ namespace ArtShop.Services.Http
             }
         }
     }
+
 }

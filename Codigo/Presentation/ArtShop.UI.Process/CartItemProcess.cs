@@ -40,9 +40,9 @@ namespace ArtShop.UI.Process
 
         }
 
-        public void EliminarCartItem(CartItem cartitem)
+        public void EliminarCartItem(int id)
         {
-            var response = HttpDelete<CartItem>("/api/CartItem/Eliminar", cartitem.Id, MediaType.Json);
+            var response = HttpDelete<CartItem>("/api/CartItem/Eliminar", id, MediaType.Json);
 
         }
 

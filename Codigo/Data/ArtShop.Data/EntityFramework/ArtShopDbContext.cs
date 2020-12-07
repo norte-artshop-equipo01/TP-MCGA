@@ -29,6 +29,7 @@ namespace ArtShop.Data
         public virtual DbSet<OrderNumber> OrderNumber { get; set; }
         public virtual DbSet<Product> Product { get; set; }
         public virtual DbSet<Rating> Rating { get; set; }
+        public virtual DbSet<Shipping> Shipping { get; set; }
     }
 
     

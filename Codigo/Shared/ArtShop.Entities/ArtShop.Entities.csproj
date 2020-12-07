@@ -52,11 +52,13 @@
     <Compile Include="Model\Metada\OrderMetadata.cs" />
     <Compile Include="Model\Metada\OrderNumberMetadata.cs" />
     <Compile Include="Model\Metada\ProductMetadata.cs" />
+    <Compile Include="Model\Metada\ShippingMetadata.cs" />
     <Compile Include="Model\Order.cs" />
     <Compile Include="Model\OrderDetail.cs" />
     <Compile Include="Model\OrderNumber.cs" />
     <Compile Include="Model\Product.cs" />
     <Compile Include="Model\Rating.cs" />
+    <Compile Include="Model\Shipping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

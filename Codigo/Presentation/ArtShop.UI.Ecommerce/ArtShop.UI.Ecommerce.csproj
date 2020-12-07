@@ -218,6 +218,7 @@
     <Content Include="Content\assets\img\core-img\logo.png" />
     <Content Include="Content\assets\img\core-img\paypal.png" />
     <Content Include="Content\assets\img\core-img\search.png" />
+    <Content Include="Content\assets\img\core-img\trash.png" />
     <Content Include="Content\assets\img\product-img\pro-big-1.jpg" />
     <Content Include="Content\assets\img\product-img\pro-big-2.jpg" />
     <Content Include="Content\assets\img\product-img\pro-big-3.jpg" />
