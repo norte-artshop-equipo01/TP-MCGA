@@ -117,6 +117,7 @@ namespace ArtShop.UI.Ecommerce.Controllers
             var carrito = cartprocess.GetByCookie(User.Identity.Name);
             var listadoitems = itemsprocess.GetByCartId(carrito.Id);
             ViewBag.Total = sum_items(listadoitems);
+            ViewBag.Ship = shippingprocess.GetByCookie(User.Identity.Name);
             return View(listadoitems);
             
         }
@@ -133,8 +134,10 @@ namespace ArtShop.UI.Ecommerce.Controllers
 
         public ActionResult ShipingIndex()
         {
-            var ship = shippingprocess.GetByCookie(User.Identity.Name).ToList();
-            
+            var ship = shippingprocess.GetByCookie(User.Identity.Name);
+            if (ship == null || ship.Id == 0)
+                ship = new Shipping();
+
             return View(ship);
         }
 
@@ -150,12 +153,28 @@ namespace ArtShop.UI.Ecommerce.Controllers
         public ActionResult AddShipping(Shipping ship)
         {
             if (ship.Id != 0)
-                ship = shippingprocess.Agregar(ship);
-            else
+            {
+                CheckAuditPattern(ship);
                 ship = shippingprocess.Editar(ship);
+            }
+            else
+            {
+                CheckAuditPattern(ship, true);
+                ship = shippingprocess.Agregar(ship);
+                
+            }
 
-            return View("CheckOut", "Cart", ship);
+            var carrito = cartprocess.GetByCookie(User.Identity.Name);
+            var listadoitems = itemsprocess.GetByCartId(carrito.Id);
+            ViewBag.Total = sum_items(listadoitems);
+            return View("Checkout", listadoitems );
         }
 
+
+        public JsonResult GetShip()
+        {
+            var ship = Json(shippingprocess.GetByCookie(User.Identity.Name), JsonRequestBehavior.AllowGet);
+            return ship;
+        }
     }
 }

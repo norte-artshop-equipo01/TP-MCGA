@@ -16,6 +16,7 @@
                     </div>
                     
                     <form action="AddShipping" method="post">
+                        @Html.HiddenFor(Model=>Model.Id)
                         <div class="row">
                             <div class="col-md-6 mb-3">
                                 @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nombre" } })
@@ -33,10 +34,7 @@
                                 @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
                             </div>
                             
-                            <div class="col-12 mb-3">
-                                @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control", @placeholder = "País" } })
-                                @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
-                            </div>
+                            
                             <div class="col-12 mb-3">
                                 
                                 @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Dirección" } })
@@ -47,8 +45,16 @@
                                 @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ciudad" } })
                                 @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
                             </div>
-                            
+                            <div class="col-12 mb-3">
 
+                                @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control", @placeholder = "País" } })
+                                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-12 mb-3">
+                                <div class="cart-btn mt-100">
+                                    <button href="#" type="submit" class="btn amado-btn w-100">Checkout</button>
+                                </div>
+                            </div> 
                             <div class="col-12">
                                 <div class="custom-control custom-checkbox d-block mb-2">
                                     <input type="checkbox" class="custom-control-input" id="customCheck2">

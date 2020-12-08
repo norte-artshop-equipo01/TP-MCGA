@@ -1,6 +1,6 @@
 ﻿@{ @model IEnumerable<ArtShop.Entities.Model.CartItem>
 double Total = ViewBag.Total;
-
+var ship = ViewBag.Ship;
 }
 
 <div class="cart-table-area section-padding-100">
@@ -18,7 +18,7 @@ double Total = ViewBag.Total;
                     <div class="row cart-summarypersonal">
 
                         <div class="col-4 col-lg-3">
-                            <img src=@String.Format("data:image/gif;base64,{0}", item.Product.Image) alt="Product" style="max-height:200px">
+                            <img src=@String.Format("data:image/gif;base64,{0}", item.Product.Image) alt="Product" style="max-height:200px; ma">
                         </div>
 
                         <div class="col-6 col-lg-9">
@@ -35,20 +35,22 @@ double Total = ViewBag.Total;
 
                 }
 
+
             </div>
+
             @*<div class="col-12 col-lg-4">
-        <div class="cart-summary">
-            <h5>Cart Total</h5>
-            <ul class="summary-table">
-                <li><span>subtotal:</span> <span>@Total</span></li>
-                <li><span>delivery:</span> <span>Free</span></li>
-                <li><span>total:</span> <span>@Total</span></li>
-            </ul>*@
+            <div class="cart-summary">
+                <h5>Cart Total</h5>
+                <ul class="summary-table">
+                    <li><span>subtotal:</span> <span>@Total</span></li>
+                    <li><span>delivery:</span> <span>Free</span></li>
+                    <li><span>total:</span> <span>@Total</span></li>
+                </ul>*@
             @*<div class="cart-btn mt-100" style="padding-top:20px; padding-left:30px">
                 <a href="cart.html" class="btn amado-btn w-100">Pagar</a>
             </div>*@
             @*</div>
-        </div>*@
+            </div>*@
             <div class="col-12 col-lg-4">
 
                 <div class="cart-summary">
@@ -68,6 +70,46 @@ double Total = ViewBag.Total;
 
             </div>
         </div>
-
+        <div class="col-4 col-lg-4 cart-summarypersonal" data-bind="with: Shipping">
+                <div class="col-md-6 mb-3">
+                    <label data-bind="text: FirstName">FirstName</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p data-bind="text: LastName">a</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p data-bind="text: Email">a</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p data-bind="text: Address">a</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p data-bind="text: City"></p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p data-bind="text: Country"></p>
+                </div>
+        </div>
     </div>
-</div>
+@section scripts
+{
+    <script src="~/Scripts/knockout-3.5.1.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
+
+    <script>
+        var AppViewModel = function() {
+            var self = this;
+            self.Shipping = ko.mapping.fromJS([]);
+
+            $.getJSON("/Cart/Getship",
+                function(data) {
+                    ko.mapping.fromJS(data, {}, self.Shipping);
+                });
+        }
+
+        var viewModel = new AppViewModel();
+        ko.applyBindings(viewModel);
+
+    </script>
+
+}
