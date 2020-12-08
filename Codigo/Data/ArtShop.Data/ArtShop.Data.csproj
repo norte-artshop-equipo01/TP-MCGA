@@ -56,7 +56,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EntityFramework\ArtShopDbContext.cs" />
-    <Compile Include="EntityFramework\ArtShopDbContext.Views.cs" />
     <Compile Include="EntityFramework\BaseDataService.cs" />
     <Compile Include="EntityFramework\IDataService.cs" />
     <Compile Include="Migrations\202012072120371_InitialCreate.cs" />

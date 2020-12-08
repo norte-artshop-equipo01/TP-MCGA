@@ -19,9 +19,9 @@ namespace ArtShop.Business
             return ship;
 
         }
-        public List<Shipping> GetbyCookie(string cookie)
+        public Shipping GetbyCookie(string cookie)
         {
-            var ship = db.Get(x => x.Email == cookie).ToList();
+            var ship = db.Get(x => x.Email == cookie).FirstOrDefault();
             
             return ship;
         }

@@ -1,0 +1,69 @@
+﻿@model ArtShop.Entities.Model.Shipping
+
+@{
+    Layout = null;
+}
+
+
+@*<div class="cart-table-area section-padding-100">
+    <div class="container-fluid">*@
+        <div class="row">
+            <div class="col-12 col-lg-8">
+                <div class="checkout_details_area mt-50 clearfix">
+
+                    <div class="cart-title">
+                        <h2>Agregar nueva dirección de envío</h2>
+                    </div>
+                    
+                    <form action="AddShipping" method="post">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                @Html.EditorFor(model => model.FirstName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Nombre" } })
+                                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+                                
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                
+                                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control", @placeholder = "Apellido" } })
+                                @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-12 mb-3">
+                                
+                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @value = User.Identity.Name,@placeholder=User.Identity.Name } }) 
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+                            
+                            <div class="col-12 mb-3">
+                                @Html.EditorFor(model => model.Country, new { htmlAttributes = new { @class = "form-control", @placeholder = "País" } })
+                                @Html.ValidationMessageFor(model => model.Country, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-12 mb-3">
+                                
+                                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control", @placeholder = "Dirección" } })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="col-12 mb-3">
+                                
+                                @Html.EditorFor(model => model.City, new { htmlAttributes = new { @class = "form-control", @placeholder = "Ciudad" } })
+                                @Html.ValidationMessageFor(model => model.City, "", new { @class = "text-danger" })
+                            </div>
+                            
+
+                            <div class="col-12">
+                                <div class="custom-control custom-checkbox d-block mb-2">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck2">
+                                    <label class="custom-control-label" for="customCheck2">Create an accout</label>
+                                </div>
+                                <div class="custom-control custom-checkbox d-block">
+                                    <input type="checkbox" class="custom-control-input" id="customCheck3">
+                                    <label class="custom-control-label" for="customCheck3">Ship to a different address</label>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    @*</div>
+</div>*@

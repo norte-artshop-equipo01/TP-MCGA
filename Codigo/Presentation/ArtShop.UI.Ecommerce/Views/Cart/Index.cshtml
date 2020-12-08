@@ -71,7 +71,7 @@ double Total = ViewBag.Total;
                         <li><span>delivery:</span> <span>Free</span></li>
                         <li><span>total:</span> <span>@Total</span></li>
                     </ul>
-                    @using (Html.BeginForm("Checkout", "Cart", FormMethod.Get))
+                    @using (Html.BeginForm("ShipingIndex", "Cart", FormMethod.Get))
                     {
                         <div class="cart-btn mt-100">
                             <button type="submit" class="btn amado-btn w-100">Checkout</button>

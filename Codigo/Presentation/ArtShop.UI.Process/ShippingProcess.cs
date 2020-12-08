@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ArtShop.UI.Process
 {
-    class ShippingProcess: ProcessComponent
+    public class ShippingProcess: ProcessComponent
     {
         public List<Shipping> Listar()
         {
@@ -40,9 +40,9 @@ namespace ArtShop.UI.Process
 
         }
 
-        public List<Shipping> GetByCookie(string cookie)
+        public Shipping GetByCookie(string cookie)
         {
-            var response = HttpGet<List<Shipping>>("/api/Shipping/GetByCookie", cookie, MediaType.Json);
+            var response = HttpGet<Shipping>("/api/Shipping/GetByCookie", cookie, MediaType.Json);
             return response;
 
         }

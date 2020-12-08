@@ -452,6 +452,9 @@
     <Content Include="Views\Product\Index.cshtml" />
     <Content Include="Views\Cart\Index.cshtml" />
     <Content Include="Views\Cart\Checkout.cshtml" />
+    <Content Include="Views\Cart\ShipingIndex.cshtml" />
+    <Content Include="Views\Cart\ShippingIndex2.cshtml" />
+    <Content Include="Views\Cart\AddShipping.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

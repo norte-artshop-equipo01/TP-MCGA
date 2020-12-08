@@ -116,7 +116,7 @@ namespace ArtShop.Services.Http
             }
         }
         [Route("GetByCookie")]
-        public List<Shipping> GetbyCookie(string cookie)
+        public Shipping GetbyCookie(string cookie)
         {
             try
             {

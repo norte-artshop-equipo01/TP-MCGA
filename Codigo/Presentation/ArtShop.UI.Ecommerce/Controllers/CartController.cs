@@ -15,7 +15,8 @@ namespace ArtShop.UI.Ecommerce.Controllers
         private ProductProcess productprocess = new ProductProcess();
         private CartProcess cartprocess = new CartProcess();
         private CartItemProcess itemsprocess = new CartItemProcess();
-        
+        private ShippingProcess shippingprocess = new ShippingProcess();
+
         public ActionResult Index()
         {
             var carrito = cartprocess.GetByCookie(User.Identity.Name);
@@ -128,6 +129,32 @@ namespace ArtShop.UI.Ecommerce.Controllers
             ViewBag.Total = sum_items(carrito.CartItem.ToList());
             return View("Index",carrito.CartItem.ToList());
 
+        }
+
+        public ActionResult ShipingIndex()
+        {
+            var ship = shippingprocess.GetByCookie(User.Identity.Name).ToList();
+            
+            return View(ship);
+        }
+
+        public ActionResult AddShipping()
+        {
+            var ship=shippingprocess.GetByCookie(User.Identity.Name);
+            if (ship==null || ship.Id==0)
+             ship = new Shipping();
+            
+            return View(ship);
+        }
+        [HttpPost]
+        public ActionResult AddShipping(Shipping ship)
+        {
+            if (ship.Id != 0)
+                ship = shippingprocess.Agregar(ship);
+            else
+                ship = shippingprocess.Editar(ship);
+
+            return View("CheckOut", "Cart", ship);
         }
 
     }
