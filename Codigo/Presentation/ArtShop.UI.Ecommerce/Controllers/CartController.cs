@@ -203,7 +203,7 @@ namespace ArtShop.UI.Ecommerce.Controllers
                 IssuerId = issuer_id,
                 Payer = new Payer()
                 {
-                    Email = User.Identity.Name
+                    Email = "test_user_46978510@testuser.com"
                 }
             };
             payment.Save();
