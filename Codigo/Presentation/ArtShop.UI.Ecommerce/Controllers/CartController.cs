@@ -197,13 +197,13 @@ namespace ArtShop.UI.Ecommerce.Controllers
             {
                 TransactionAmount = float.Parse(Total.ToString()),
                 Token = token,
-                Description = "Lightweight Marble Car",
+                Description = "Spark-Art",
                 Installments = Convert.ToInt32(installments),
                 PaymentMethodId = payment_method_id,
                 IssuerId = issuer_id,
                 Payer = new Payer()
                 {
-                    Email = "ophelia_boyer@gmail.com"
+                    Email = User.Identity.Name
                 }
             };
             payment.Save();
