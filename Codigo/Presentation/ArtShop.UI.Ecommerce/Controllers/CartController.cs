@@ -6,6 +6,10 @@ using System.Web;
 using System.Web.Mvc;
 using ArtShop.Entities;
 using ArtShop.Entities.Model;
+using MercadoPago;
+using MercadoPago.DataStructures.Payment;
+using MercadoPago.Resources;
+
 
 namespace ArtShop.UI.Ecommerce.Controllers
 {
@@ -137,7 +141,9 @@ namespace ArtShop.UI.Ecommerce.Controllers
             var ship = shippingprocess.GetByCookie(User.Identity.Name);
             if (ship == null || ship.Id == 0)
                 ship = new Shipping();
-
+            var carrito = cartprocess.GetByCookie(User.Identity.Name);
+            var listadoitems = itemsprocess.GetByCartId(carrito.Id);
+            ViewBag.Total = sum_items(listadoitems);
             return View(ship);
         }
 
@@ -176,5 +182,35 @@ namespace ArtShop.UI.Ecommerce.Controllers
             var ship = Json(shippingprocess.GetByCookie(User.Identity.Name), JsonRequestBehavior.AllowGet);
             return ship;
         }
+        [HttpPost]
+       public ActionResult procesar_pago(FormCollection Request)
+        {
+            var token = Request["token"];
+            var payment_method_id = Request["payment_method_id"];
+            var installments = Request["installments"];
+            var issuer_id = Request["issuer_id"];
+            MercadoPago.SDK.AccessToken = token;
+            var carrito = cartprocess.GetByCookie(User.Identity.Name);
+            var listadoitems = itemsprocess.GetByCartId(carrito.Id);
+             var Total = sum_items(listadoitems);
+            Payment payment = new Payment()
+            {
+                TransactionAmount = float.Parse(Total.ToString()),
+                Token = token,
+                Description = "Lightweight Marble Car",
+                Installments = Convert.ToInt32(installments),
+                PaymentMethodId = payment_method_id,
+                IssuerId = issuer_id,
+                Payer = new Payer()
+                {
+                    Email = "ophelia_boyer@gmail.com"
+                }
+            };
+            payment.Save();
+            ViewBag.Confirmacion = (payment.Status);
+            return View(payment);
+        }
+      
+       
     }
 }

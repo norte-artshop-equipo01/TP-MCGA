@@ -3,7 +3,7 @@ double Total = ViewBag.Total;
 var ship = ViewBag.Ship;
 }
 
-<div class="cart-table-area section-padding-100">
+<div class="cart-table-area section-padding-0-100">
     <div class="container-fluid">
 
         <div class="row">
@@ -18,7 +18,7 @@ var ship = ViewBag.Ship;
                     <div class="row cart-summarypersonal">
 
                         <div class="col-4 col-lg-3">
-                            <img src=@String.Format("data:image/gif;base64,{0}", item.Product.Image) alt="Product" style="max-height:200px; ma">
+                            <img src=@String.Format("data:image/gif;base64,{0}", item.Product.Image) alt="Product" style="max-height:200px">
                         </div>
 
                         <div class="col-6 col-lg-9">
@@ -34,7 +34,7 @@ var ship = ViewBag.Ship;
                     </div>
 
                 }
-
+            
 
             </div>
 
@@ -60,39 +60,42 @@ var ship = ViewBag.Ship;
                         <li><span>delivery:</span> <span>Free</span></li>
                         <li><span>total:</span> <span>@Total</span></li>
                     </ul>
-                    @using (Html.BeginForm("Shipping", "Cart", FormMethod.Get))
-                    {
-                        <div class="cart-btn mt-100">
-                            <button type="submit" class="btn amado-btn w-100">Proceder con el Pago</button>
-                        </div>
-                    }
+                    <form action="/Cart/procesar_pago" method="POST">
+                        <script src="~/Scripts/web-tokenize-checkout.js"
+                                data-public-key="TEST-cb07c85a-63b9-44fa-80a9-e2dd1e27390b"
+                                data-transaction-
+                                data-transaction-amount="@Total">
+                        </script>
+                    </form>
                 </div>
 
             </div>
         </div>
-        <div class="col-4 col-lg-4 cart-summarypersonal" data-bind="with: Shipping">
-                <div class="col-md-6 mb-3">
-                    <label data-bind="text: FirstName">FirstName</label>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <p data-bind="text: LastName">a</p>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <p data-bind="text: Email">a</p>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <p data-bind="text: Address">a</p>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <p data-bind="text: City"></p>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <p data-bind="text: Country"></p>
-                </div>
+        <div class="col-8 col-lg-8" cart-summarypersonal" data-bind="with: Shipping">
+            <div class="cart-title mt-50">
+                <h2>Envío y Facturación</h2>
+            </div>
+            <div class="col-md-6 mb-3">
+                <label data-bind="text: Shipping.FirstName">FirstName</label>
+            </div>
+            <div class="col-md-6 mb-3">
+                <p data-bind="text: Shipping.LastName"></p>
+            </div>
+            <div class="col-md-6 mb-3">
+                <p data-bind="text: Email">a</p>
+            </div>
+            <div class="col-md-6 mb-3">
+                <p data-bind="text: Address">a</p>
+            </div>
+            <div class="col-md-6 mb-3">
+                <p data-bind="text: City"></p>
+            </div>
+            <div class="col-md-6 mb-3">
+                <p data-bind="text: Country"></p>
+            </div>
         </div>
     </div>
-@section scripts
-{
+</div>
     <script src="~/Scripts/knockout-3.5.1.js"></script>
     <script src="~/Scripts/knockout.mapping-latest.js"></script>
 
@@ -112,4 +115,4 @@ var ship = ViewBag.Ship;
 
     </script>
 
-}
+
