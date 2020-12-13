@@ -1,17 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SparkArtApp.Models;
+using SparkArtApp.Views;
+using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using SparkArtApp.Models;
-using SparkArtApp.Services;
-using SparkArtApp.Views;
-using Newtonsoft.Json;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace SparkArtApp.ViewModels
 {
@@ -34,17 +27,16 @@ namespace SparkArtApp.ViewModels
 
         public ListArtistPage(INavigation navigation)
         {
-            this.Title = "Lista de Items";
-            this.Items= new ObservableCollection<Artist>();
-            this.Navigation = navigation;
-            this.LoadItemsCommand = new Command(async ()=> await ExecuteLoadItemsCommand());
-            this.AddItemCommand = new Command(OnAddItem);
-
+            Title = "Lista de Artistas";
+            Items= new ObservableCollection<Artist>();
+            Navigation = navigation;
+            LoadItemsCommand = new Command(async ()=> await ExecuteLoadItemsCommand());
+            AddItemCommand = new Command(OnAddItem);
         }
 
         private async void OnAddItem(object obj)
         {
-            await this.Navigation.PushModalAsync(new NewItemPage());
+            await Navigation.PushModalAsync(new NewItemPage());
         }
 
         private async Task ExecuteLoadItemsCommand()

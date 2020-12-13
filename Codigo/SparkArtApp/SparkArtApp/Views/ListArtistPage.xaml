@@ -4,7 +4,7 @@
              xmlns:model="clr-namespace:SparkArtApp.Models;assembly=SparkArtApp"
              x:Class="SparkArtApp.Views.ItemsPage" Title="{Binding Title}" >
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Nuevo" Command="{Binding AddItemCommand}"></ToolbarItem>
+        <ToolbarItem Text="Nuevo" Clicked="AddArtist"></ToolbarItem>
     </ContentPage.ToolbarItems>
     <StackLayout x:Name="mainStackLayout">
         <ListView ItemsSource="{Binding Items}" SelectionMode="None">
@@ -13,7 +13,7 @@
                     <TextCell Text="{Binding FullName}">
                         <TextCell.ContextActions>
                             <MenuItem Text="Editar" Clicked="EditArtist" CommandParameter="{Binding .}"></MenuItem>
-                            <MenuItem Text="Eliminar"></MenuItem>
+                            <MenuItem Text="Eliminar" Clicked="DeleteArtist" CommandParameter="{Binding .}"></MenuItem>
                         </TextCell.ContextActions>
                     </TextCell>
                 </DataTemplate>

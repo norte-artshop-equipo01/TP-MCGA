@@ -1,10 +1,6 @@
 ﻿using SparkArtApp.Models;
-using SparkArtApp.Services;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Text;
 using SparkArtApp.Views;
+using System.ComponentModel;
 using Xamarin.Forms;
 
 namespace SparkArtApp.ViewModels
@@ -14,6 +10,7 @@ namespace SparkArtApp.ViewModels
         private Artist _artist;
 
         public Command SaveCommand { get; }
+        public Command CancelCommand { get; }
         public INavigation Navigation { get; set; }
 
         public Artist artist
@@ -28,10 +25,20 @@ namespace SparkArtApp.ViewModels
 
         public EditArtistViewModel(INavigation navigation, Artist artist)
         {
-            Title = "Editar: " + artist.FullName;
+            if (artist.Id != 0)
+            {
+                Title = "Editar: " + artist.FullName;
+                SaveCommand = new Command(OnUpdateArtistAsync);
+            }
+            else
+            {
+                Title = "Crear Nuevo Artista";
+                SaveCommand = new Command(OnAddArtistAsync);
+            }
+            
             _artist = artist;
             Navigation = navigation;
-            SaveCommand = new Command(OnSaveAsync);
+            CancelCommand = new Command(OnCancel);
             PropertyChanged += OnPropertyChanged;
         }
 
@@ -40,19 +47,21 @@ namespace SparkArtApp.ViewModels
             SaveCommand.ChangeCanExecute();
         }
 
-        private async void OnSaveAsync()
+        private async void OnUpdateArtistAsync()
         {
             await DataStore.UpdateItemAsync(_artist);
             Application.Current.MainPage = new NavigationPage(new ItemsPage());
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="obj"></param>
+        private async void OnAddArtistAsync()
+        {
+            await DataStore.AddItemAsync(_artist);
+            Application.Current.MainPage = new NavigationPage(new ItemsPage());
+        }
+
         private async void OnCancel(object obj)
         {
-            var result = await Application.Current.MainPage.DisplayAlert("", "¿Está seguro que desea guardar los cambios?", "Si", "No");
+            var result = await Application.Current.MainPage.DisplayAlert("", "¿Está seguro que desea salir sin guardar los cambios?", "Si", "No");
 
             if (result)
             {

@@ -18,17 +18,27 @@ namespace SparkArtApp.Services
         }
 
 
-        public Task<bool> AddItemAsync<T>(T item)
+        public async Task AddItemAsync<T>(T item)
         {
-            throw new NotImplementedException();
+            var requestUrl = GetModelUrl<T>();
+            var json = JsonConvert.SerializeObject(item);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await client.PostAsync(requestUrl + "agregar", content);
+
+            if (!response.IsSuccessStatusCode)
+                throw new HttpRequestException("Error while calling " + requestUrl);
         }
 
-        public Task<bool> DeleteItemAsync<T>(Guid id)
+        public async Task DeleteItemAsync<T>(int id)
         {
-            throw new NotImplementedException();
+            var requestUrl = GetModelUrl<T>();
+            var response = await client.DeleteAsync(requestUrl + "eliminar?id=" + id.ToString());
+            
+            if (!response.IsSuccessStatusCode)
+                throw new HttpRequestException("Error while calling " + requestUrl);
         }
 
-        public Task<T> GetItemAsync<T>(Guid id)
+        public async Task<T> GetItemAsync<T>(Guid id)
         {
             throw new NotImplementedException();
         }

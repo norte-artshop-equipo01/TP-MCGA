@@ -7,9 +7,9 @@ namespace SparkArtApp.Services
 {
     public interface IDataStore
     {
-        Task<bool> AddItemAsync<T>(T item);
+        Task AddItemAsync<T>(T item);
         Task UpdateItemAsync<T>(T item);
-        Task<bool> DeleteItemAsync<T>(Guid id);
+        Task DeleteItemAsync<T>(int id);
         Task<T> GetItemAsync<T>(Guid id);
         Task<List<T>> GetItemsAsync<T>();
     }
