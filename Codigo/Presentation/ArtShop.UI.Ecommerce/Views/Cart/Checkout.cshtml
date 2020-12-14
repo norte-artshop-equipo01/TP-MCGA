@@ -60,7 +60,8 @@ var ship = ViewBag.Ship;
                         <li><span>delivery:</span> <span>Free</span></li>
                         <li><span>total:</span> <span>@Total</span></li>
                     </ul>
-                    <form action="/Cart/procesar_pago" method="POST">
+                    <form>
+                        @Html.Action("pago_partial")
                         <script src="~/Scripts/web-tokenize-checkout.js"
                                 data-public-key="TEST-cb07c85a-63b9-44fa-80a9-e2dd1e27390b"
                                

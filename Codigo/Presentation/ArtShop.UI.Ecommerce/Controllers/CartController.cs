@@ -9,6 +9,7 @@ using ArtShop.Entities.Model;
 using MercadoPago;
 using MercadoPago.DataStructures.Payment;
 using MercadoPago.Resources;
+using MercadoPago.DataStructures.Preference;
 
 
 namespace ArtShop.UI.Ecommerce.Controllers
@@ -122,10 +123,67 @@ namespace ArtShop.UI.Ecommerce.Controllers
             var listadoitems = itemsprocess.GetByCartId(carrito.Id);
             ViewBag.Total = sum_items(listadoitems);
             ViewBag.Ship = shippingprocess.GetByCookie(User.Identity.Name);
+
+            MercadoPago.SDK.AccessToken = "TEST-6196665787772204-120903-7e3696caa9ad7207eae686fc4d423f53-684823230";
+            Preference preference = new Preference();
+            
+            foreach(CartItem item in listadoitems)
+            {
+                preference.Items.Add(
+                    new MercadoPago.DataStructures.Preference.Item()
+                    {
+                        Title = item.Product.Title,
+                        Quantity = item.Quantity,
+                        CurrencyId = MercadoPago.Common.CurrencyId.ARS,
+                        UnitPrice=Convert.ToDecimal(item.Price)
+
+                    }) ;
+            }
+            preference.Save();
+            ViewBag.PrefId = preference;
             return View(listadoitems);
             
         }
-        
+        public ActionResult pago_partial()
+        {
+            var carrito = cartprocess.GetByCookie(User.Identity.Name);
+            var listadoitems = itemsprocess.GetByCartId(carrito.Id);
+            ViewBag.Total = sum_items(listadoitems);
+            ViewBag.Ship = shippingprocess.GetByCookie(User.Identity.Name);
+            if (MercadoPago.SDK.AccessToken == null)
+            {
+                MercadoPago.SDK.SetAccessToken("TEST-6196665787772204-120903-7e3696caa9ad7207eae686fc4d423f53-684823230");
+            }
+            
+            Preference preference = new Preference();
+            
+            preference.BackUrls = new BackUrls()
+            {
+                Success = "~/cart/cerrar_orden",
+            };
+
+            foreach (CartItem item in listadoitems)
+            {
+                preference.Items.Add(
+                    new MercadoPago.DataStructures.Preference.Item()
+                    {
+                        Title = item.Product.Title,
+                        Quantity = item.Quantity,
+                        CurrencyId = MercadoPago.Common.CurrencyId.ARS,
+                        UnitPrice = Convert.ToDecimal(item.Price)
+
+                    });
+            }
+            preference.Save();
+            return View(preference);
+        }
+       
+        public ActionResult cerrar_orden(FormCollection json)
+        {
+            
+            return View(json);
+        }
+
         public ActionResult Eliminar(int id)
         {
            itemsprocess.EliminarCartItem(id);
@@ -189,10 +247,11 @@ namespace ArtShop.UI.Ecommerce.Controllers
             var payment_method_id = Request["payment_method_id"];
             var installments = Request["installments"];
             var issuer_id = Request["issuer_id"];
-            MercadoPago.SDK.AccessToken = token;
+           
             var carrito = cartprocess.GetByCookie(User.Identity.Name);
             var listadoitems = itemsprocess.GetByCartId(carrito.Id);
              var Total = sum_items(listadoitems);
+            MercadoPago.SDK.SetAccessToken(token);
             Payment payment = new Payment()
             {
                 TransactionAmount = float.Parse(Total.ToString()),
@@ -201,12 +260,13 @@ namespace ArtShop.UI.Ecommerce.Controllers
                 Installments = Convert.ToInt32(installments),
                 PaymentMethodId = payment_method_id,
                 IssuerId = issuer_id,
-                Payer = new Payer()
+                Payer = new MercadoPago.DataStructures.Payment.Payer()
                 {
                     Email = "test_user_46978510@testuser.com"
                 }
+                
             };
-            payment.Save();
+            var payret =payment.Save();
             ViewBag.Confirmacion = (payment.Status);
             return View(payment);
         }
