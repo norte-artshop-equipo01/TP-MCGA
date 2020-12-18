@@ -123,8 +123,10 @@ namespace ArtShop.UI.Ecommerce.Controllers
             var listadoitems = itemsprocess.GetByCartId(carrito.Id);
             ViewBag.Total = sum_items(listadoitems);
             ViewBag.Ship = shippingprocess.GetByCookie(User.Identity.Name);
-
-            MercadoPago.SDK.AccessToken = "TEST-6196665787772204-120903-7e3696caa9ad7207eae686fc4d423f53-684823230";
+            if (MercadoPago.SDK.AccessToken == null)
+            {
+                MercadoPago.SDK.AccessToken = "TEST-6196665787772204-120903-7e3696caa9ad7207eae686fc4d423f53-684823230";
+            }
             Preference preference = new Preference();
             
             foreach(CartItem item in listadoitems)
@@ -231,7 +233,7 @@ namespace ArtShop.UI.Ecommerce.Controllers
             var carrito = cartprocess.GetByCookie(User.Identity.Name);
             var listadoitems = itemsprocess.GetByCartId(carrito.Id);
             ViewBag.Total = sum_items(listadoitems);
-            return View("Checkout", listadoitems );
+            return View("Checkout", listadoitems);
         }
 
 
