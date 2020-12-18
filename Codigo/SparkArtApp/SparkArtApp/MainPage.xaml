@@ -7,7 +7,7 @@
         <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
             <Image Source="http://norte-mcga-grupo01.somee.com/Content/assets/img/core-img/logo.png"/>
         </Frame>
-        <Label Text="Aplicación de alta, baja, modificación, y eliminación para el sitio SparkArt" FontSize="16" Padding="30,0,30,0"/>
+        <Label Text="Aplicación de alta, baja, y modificación para el sitio SparkArt" FontSize="16" Padding="30,0,30,0"/>
         <Label FontSize="16" Padding="30,24,30,0">
             <Label.FormattedText>
                 <FormattedString>
