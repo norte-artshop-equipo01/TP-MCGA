@@ -19,7 +19,7 @@ namespace ArtShop.Business
             foreach (Order order in orderlist)
             {
                 order.OrderDetail = db2.Get(x => x.OrderId == order.Id).ToList();
-                order.Shipping = dbship.GetById(order.ShippingId);
+                //order.Shipping = dbship.GetById(order.ShippingId);
             }
             return orderlist;
            
@@ -40,7 +40,7 @@ namespace ArtShop.Business
         {
             var order = db.GetById(id);
             order.OrderDetail= db2.Get(x => x.OrderId == order.Id).ToList();
-            order.Shipping = dbship.GetById(order.ShippingId);
+            //order.Shipping = dbship.GetById(order.ShippingId);
             return order;
         }
         public void Borrar(Order order)

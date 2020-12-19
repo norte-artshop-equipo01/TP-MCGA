@@ -28,11 +28,11 @@ namespace ArtShop.Entities.Model
             /// <summary>
             /// User Id
             /// </summary>        
-            [DisplayName("Shipping Addres")]
+            [DisplayName("ShippingId")]
             [Required(ErrorMessage = "Requerido")]
             
             public int ShippingId { get; set; }
-
+            
 
             [DisplayName("Email")]
             [Required(ErrorMessage = "Requerido")]

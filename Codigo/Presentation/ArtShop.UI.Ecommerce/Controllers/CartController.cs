@@ -4,8 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using ArtShop.Entities;
+//using ArtShop.Entities;
 using ArtShop.Entities.Model;
+
 using MercadoPago;
 using MercadoPago.DataStructures.Payment;
 using MercadoPago.Resources;
@@ -21,6 +22,8 @@ namespace ArtShop.UI.Ecommerce.Controllers
         private CartProcess cartprocess = new CartProcess();
         private CartItemProcess itemsprocess = new CartItemProcess();
         private ShippingProcess shippingprocess = new ShippingProcess();
+        private OrderProcess orderprocess = new OrderProcess();
+        
 
         public ActionResult Index()
         {
@@ -146,40 +149,40 @@ namespace ArtShop.UI.Ecommerce.Controllers
             return View(listadoitems);
             
         }
-        public ActionResult pago_partial()
-        {
-            var carrito = cartprocess.GetByCookie(User.Identity.Name);
-            var listadoitems = itemsprocess.GetByCartId(carrito.Id);
-            ViewBag.Total = sum_items(listadoitems);
-            ViewBag.Ship = shippingprocess.GetByCookie(User.Identity.Name);
-            if (MercadoPago.SDK.AccessToken == null)
-            {
-                MercadoPago.SDK.SetAccessToken("TEST-6196665787772204-120903-7e3696caa9ad7207eae686fc4d423f53-684823230");
-            }
-            
-            Preference preference = new Preference();
-            
-            preference.BackUrls = new BackUrls()
-            {
-                Success = "~/cart/cerrar_orden",
-            };
+        //public ActionResult pago_partial()
+        //{
+        //    var carrito = cartprocess.GetByCookie(User.Identity.Name);
+        //    var listadoitems = itemsprocess.GetByCartId(carrito.Id);
+        //    ViewBag.Total = sum_items(listadoitems);
+        //    ViewBag.Ship = shippingprocess.GetByCookie(User.Identity.Name);
+        //    if (MercadoPago.SDK.AccessToken == null)
+        //    {
+        //        MercadoPago.SDK.SetAccessToken("TEST-6196665787772204-120903-7e3696caa9ad7207eae686fc4d423f53-684823230");
+        //    }
 
-            foreach (CartItem item in listadoitems)
-            {
-                preference.Items.Add(
-                    new MercadoPago.DataStructures.Preference.Item()
-                    {
-                        Title = item.Product.Title,
-                        Quantity = item.Quantity,
-                        CurrencyId = MercadoPago.Common.CurrencyId.ARS,
-                        UnitPrice = Convert.ToDecimal(item.Price)
+        //    Preference preference = new Preference();
 
-                    });
-            }
-            preference.Save();
-            return View(preference);
-        }
-       
+        //    preference.BackUrls = new BackUrls()
+        //    {
+        //        Success = "~/cart/cerrar_orden",
+        //    };
+
+        //    foreach (CartItem item in listadoitems)
+        //    {
+        //        preference.Items.Add(
+        //            new MercadoPago.DataStructures.Preference.Item()
+        //            {
+        //                Title = item.Product.Title,
+        //                Quantity = item.Quantity,
+        //                CurrencyId = MercadoPago.Common.CurrencyId.ARS,
+        //                UnitPrice = Convert.ToDecimal(item.Price)
+
+        //            });
+        //    }
+        //    preference.Save();
+        //    return View(preference);
+        //}
+
         public ActionResult cerrar_orden(FormCollection json)
         {
             
@@ -200,7 +203,10 @@ namespace ArtShop.UI.Ecommerce.Controllers
         {
             var ship = shippingprocess.GetByCookie(User.Identity.Name);
             if (ship == null || ship.Id == 0)
+            {
                 ship = new Shipping();
+                CheckAuditPattern(ship, true);
+            }
             var carrito = cartprocess.GetByCookie(User.Identity.Name);
             var listadoitems = itemsprocess.GetByCartId(carrito.Id);
             ViewBag.Total = sum_items(listadoitems);
@@ -242,34 +248,74 @@ namespace ArtShop.UI.Ecommerce.Controllers
             var ship = Json(shippingprocess.GetByCookie(User.Identity.Name), JsonRequestBehavior.AllowGet);
             return ship;
         }
+        public JsonResult GetCartitem()
+        {
+            var carrito = cartprocess.GetByCookie(User.Identity.Name);
+            var cart = Json(itemsprocess.GetByCartId(carrito.Id), JsonRequestBehavior.AllowGet);
+            return cart;
+        }
+
         [HttpPost]
        public ActionResult procesar_pago(FormCollection Request)
         {
-            var token = Request["token"];
-            var payment_method_id = Request["payment_method_id"];
-            var installments = Request["installments"];
-            var issuer_id = Request["issuer_id"];
-           
+            var token = Request["token"].Split(',')[0];
+            var payment_method_id = Request["payment_method_id"].Split(',')[0];
+            var installments = Request["installments"].Split(',')[0];
+            var issuer_id = Request["issuer_id"].Split(',')[0];
+            if (MercadoPago.SDK.AccessToken == null)
+            {
+                MercadoPago.SDK.SetAccessToken("TEST-6196665787772204-120903-7e3696caa9ad7207eae686fc4d423f53-684823230");
+            }
             var carrito = cartprocess.GetByCookie(User.Identity.Name);
             var listadoitems = itemsprocess.GetByCartId(carrito.Id);
              var Total = sum_items(listadoitems);
-            MercadoPago.SDK.SetAccessToken(token);
-            Payment payment = new Payment()
-            {
-                TransactionAmount = float.Parse(Total.ToString()),
-                Token = token,
-                Description = "Spark-Art",
-                Installments = Convert.ToInt32(installments),
-                PaymentMethodId = payment_method_id,
-                IssuerId = issuer_id,
-                Payer = new MercadoPago.DataStructures.Payment.Payer()
+            //MercadoPago.SDK.SetAccessToken(token);
+            Payment payment = new Payment();
+
+
+            payment.TransactionAmount = (float)Total;
+            payment.Token = token;
+            payment.Description = "Spark-Art";
+            payment.Installments = int.Parse(installments); //Convert.ToInt32(installments);
+            payment.PaymentMethodId = payment_method_id;
+            payment.IssuerId = issuer_id;
+               payment.Payer = new MercadoPago.DataStructures.Payment.Payer()
                 {
                     Email = "test_user_46978510@testuser.com"
-                }
+                
+                
                 
             };
             var payret =payment.Save();
+            
             ViewBag.Confirmacion = (payment.Status);
+            ViewBag.Cuotas = payment.Installments;
+            ViewBag.Monto = payment.TransactionAmount;
+
+            //Impacto y creacion de la orden 
+            Entities.Model.Order order = new Entities.Model.Order();
+            CheckAuditPattern(order, true);
+            var ship = shippingprocess.GetByCookie(User.Identity.Name);
+            order.ShippingId= ship.Id;
+            order.Email = User.Identity.Name;
+            order.OrderDate = DateTime.Now;
+            order.TotalPrice = Total;
+            order.ItemCount = carrito.CartItem.Count();
+
+            foreach (CartItem item in listadoitems)
+            {
+                OrderDetail orderdetail = new OrderDetail();
+                CheckAuditPattern(orderdetail, true);
+                orderdetail.OrderId = order.Id;
+                orderdetail.ProductId = item.ProductId;
+                orderdetail.Price = item.Price;
+                orderdetail.Quantity = item.Quantity;
+                orderprocess.AgregarLinea(orderdetail);
+                itemsprocess.EliminarCartItem(item.Id);
+            }
+            cartprocess.EliminarCart(carrito);
+
+            
             return View(payment);
         }
       

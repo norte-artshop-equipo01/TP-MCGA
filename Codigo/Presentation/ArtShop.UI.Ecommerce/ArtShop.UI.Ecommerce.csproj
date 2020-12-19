@@ -474,7 +474,6 @@
     <Content Include="Views\Cart\ShippingIndex2.cshtml" />
     <Content Include="Views\Cart\AddShipping.cshtml" />
     <Content Include="Views\Cart\procesar_pago.cshtml" />
-    <Content Include="Views\Cart\pago_partial.cshtml" />
     <Content Include="Views\Cart\cerrar_orden.cshtml" />
   </ItemGroup>
   <ItemGroup>
