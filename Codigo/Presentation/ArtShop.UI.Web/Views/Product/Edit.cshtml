@@ -1,0 +1,151 @@
+﻿@{@model ArtShop.Entities.Model.Product
+List<SelectListItem> Artistas = (List<SelectListItem>)ViewBag.Artist;
+
+Layout = null;}
+
+
+@using (Html.BeginForm("Edit", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Editar Obra</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.CreatedOn)
+        @Html.HiddenFor(model => model.CreatedBy)
+        @Html.HiddenFor(model => model.ChangedOn)
+        @Html.HiddenFor(model => model.ChangedBy)
+        @Html.HiddenFor(model => model.AvgStars)
+        @Html.HiddenFor(model => model.QuantitySold)
+        @Html.HiddenFor(model => model.Image)
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-10" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Artista", htmlAttributes: new { @class = "control-label col-md-6" })
+            @Html.LabelFor(model => model.ArtistId, htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.ArtistId, Artistas, new { @value = Model.ArtistId })
+                @Html.ValidationMessageFor(model => model.ArtistId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-10">
+
+                <input type="file" class="imageback btn btn-label" name="Image2" id="imagenPrevisualizacion" accept="image/*">
+                <div>
+                    <img class="d-block w-100" id="Image" name="Image2" src=@String.Format("data:image/gif;base64,{0}", Model.Image) alt="First slide">
+
+                    @*<img class="col-md-6" id="Image" name="Image2" alt="" style="max-width:200px" />*@
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Disabled, htmlAttributes: new { @class = "control-label col-md-6" })
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.Disabled)
+                    @Html.ValidationMessageFor(model => model.Disabled, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Guardar" class="btn btn-outline-primary btn-icon-text" />
+                <button type="button" class="btn btn-outline-danger btn-icon-text" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            </div>
+        </div>
+    </div>
+}
+
+
+<script type="text/javascript">
+
+        const $seleccionArchivos = document.querySelector("#imagenPrevisualizacion"),
+            $imagenPrevisualizacion = document.querySelector("#Image");
+
+        // Escuchar cuando cambie
+        $seleccionArchivos.addEventListener("change", () => {
+            // Los archivos seleccionados, pueden ser muchos o uno
+            const archivos = $seleccionArchivos.files;
+            // Si no hay archivos salimos de la función y quitamos la imagen
+            if (!archivos || !archivos.length) {
+                $imagenPrevisualizacion.src = "";
+                return;
+            }
+            // Ahora tomamos el primer archivo, el cual vamos a previsualizar
+            const primerArchivo = archivos[0];
+            // Lo convertimos a un objeto de tipo objectURL
+            const objectURL = URL.createObjectURL(primerArchivo);
+            // Y a la fuente de la imagen le ponemos el objectURL
+            $imagenPrevisualizacion.src = objectURL;
+        });
+
+        //document.getElementById("file").onchange = function (e) {
+        //    // Creamos el objeto de la clase FileReader
+        //    let reader = new FileReader();
+
+        //    // Leemos el archivo subido y se lo pasamos a nuestro fileReader
+        //    reader.readAsDataURL(e.target.files[0]);
+
+        //    // Le decimos que cuando este listo ejecute el código interno
+        //    reader.onload = function () {
+        //        let preview = document.getElementById('preview'),
+        //           image = document.createElement('img');
+
+        //        image.src = reader.result;
+
+        //        preview.innerHTML = '';
+        //        preview.append(image);
+
+        //        $imagen2.src = reader.result;
+        //        model.
+        //    };
+        //}
+
+        //$.ajax({
+        //    url: "/Product/Conversor",
+        //    data: file.src,
+        //    success: function (result) {
+        //        var imageURL="data:image/gif;base64,result"
+        //    }
+
+        //})
+</script>
+
+
+

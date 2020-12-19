@@ -44,6 +44,20 @@ namespace ArtShop.UI.Web.Controllers
             ViewBag.Artistas = art_bag();
             return View("Index", prd.ListarTodosLosProductos());
         }
+
+        public PartialViewResult Edit(int id)
+        {
+            var product = prd.GetById(id);
+            ViewBag.Artist = art_bag();
+            return PartialView(product);
+        }
+        [HttpPost]
+        public ActionResult Edit(Product product)
+        {
+            prd.EditarProduct(product);
+            var productos = prd.ListarTodosLosProductos();
+            return View("Index", productos);
+        }
         public string ParseCv(HttpPostedFileBase cvFile)
         {
             byte[] fileInBytes = new byte[cvFile.ContentLength];
