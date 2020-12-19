@@ -1,0 +1,74 @@
+﻿@model ArtShop.Entities.Model.Product
+    @{ Layout = null;}
+
+<h3>Esta seguro de eliminar esta Obra?</h3>
+<div>
+    <hr />
+    @using (Html.BeginForm("Eliminar", "Product", FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+<dl class="dl-horizontal">
+
+    @Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.CreatedOn)
+    @Html.HiddenFor(model => model.CreatedBy)
+    @Html.HiddenFor(model => model.ChangedOn)
+    @Html.HiddenFor(model => model.ChangedBy)
+    @Html.HiddenFor(model => model.AvgStars)
+    @Html.HiddenFor(model => model.QuantitySold)
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Title)
+
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Title)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Artist)
+
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Artist.FirstName)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Description)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Description)
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Image)
+    </dt>
+
+    <dd>
+        <img class="d-block w-100" src=@String.Format("data:image/gif;base64,{0}", Model.Image)>
+    </dd>
+
+    <dt>
+        @Html.DisplayNameFor(model => model.Price)
+    </dt>
+
+    <dd>
+        @Html.DisplayFor(model => model.Price)
+    </dd>
+
+</dl>
+
+        
+        @*@Html.AntiForgeryToken()*@
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Eliminar" class="btn btn-outline-primary btn-icon-text" />
+        <button type="button" class="btn btn-outline-danger btn-icon-text" data-dismiss="modal" aria-hidden="true">Cancel</button>
+    </div>
+</div>
+        }
+    </div>

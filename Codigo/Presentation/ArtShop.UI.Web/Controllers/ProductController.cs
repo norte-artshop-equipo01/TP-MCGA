@@ -91,7 +91,19 @@ namespace ArtShop.UI.Web.Controllers
                }).ToList();
 
             return artistas;
+        }
+        public ActionResult Eliminar(int id)
+        {
+            var product = prd.GetById(id);
+            return View("Eliminar", product);
+        }
 
+        [HttpPost]
+        public ActionResult Eliminar(Product product)
+        {
+            prd.EliminarProduct(product);
+            var productos = prd.ListarTodosLosProductos();
+            return View("Index", productos);
         }
 
     }
