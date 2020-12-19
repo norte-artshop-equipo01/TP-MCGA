@@ -301,7 +301,7 @@ namespace ArtShop.UI.Ecommerce.Controllers
             order.OrderDate = DateTime.Now;
             order.TotalPrice = Total;
             order.ItemCount = carrito.CartItem.Count();
-
+            order=orderprocess.AgregarOrder(order);
             foreach (CartItem item in listadoitems)
             {
                 OrderDetail orderdetail = new OrderDetail();
