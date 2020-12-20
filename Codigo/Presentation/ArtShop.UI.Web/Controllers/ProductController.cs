@@ -95,12 +95,14 @@ namespace ArtShop.UI.Web.Controllers
         public ActionResult Eliminar(int id)
         {
             var product = prd.GetById(id);
+            product.Artist = art.GetById(product.ArtistId);
             return View("Eliminar", product);
         }
 
         [HttpPost]
         public ActionResult Eliminar(Product product)
         {
+            
             prd.EliminarProduct(product);
             var productos = prd.ListarTodosLosProductos();
             return View("Index", productos);
