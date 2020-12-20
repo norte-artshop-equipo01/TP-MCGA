@@ -86,7 +86,8 @@ namespace ArtShop.Data
 
         public virtual void Delete(int id)
         {
-            var entity = _db.Set<T>().Find(id);
+            //var entity = _db.Set<T>().Find(id);
+            var entity =_db.Set<T>().SingleOrDefault(x => x.Id == id);
             _db.Set<T>().Remove(entity);
             _db.SaveChanges();
         }

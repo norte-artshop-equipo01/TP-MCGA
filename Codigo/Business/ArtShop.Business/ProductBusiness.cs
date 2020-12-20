@@ -35,7 +35,9 @@ namespace ArtShop.Business
         }
         public Product GetbyID(int id)
         {
-            return db.GetById(id);
+            var prod = db.GetById(id);
+            //prod.Artist = db2.GetById(prod.ArtistId);
+            return prod;
         }
         public void Borrar(Product product)
         {
