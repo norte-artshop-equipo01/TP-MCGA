@@ -40,6 +40,8 @@ namespace ArtShop.Entities.Model
 
         public virtual ICollection<OrderDetail> OrderDetail { get; set; }
 
+        public string Pdf { get; set; }
+
         //public virtual Shipping Shipping { get; set; }
     }
 }

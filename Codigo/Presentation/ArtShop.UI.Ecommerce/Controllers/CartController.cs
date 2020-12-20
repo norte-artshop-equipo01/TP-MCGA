@@ -287,7 +287,10 @@ namespace ArtShop.UI.Ecommerce.Controllers
             order.ItemCount = carrito.CartItem.Count();
             order=orderprocess.AgregarOrder(order);
             var pdf=crear_pdf(order, listadoitems, ship);
-
+            order.Pdf = pdf;
+            orderprocess.EditarOrder(order);
+            ViewBag.items = listadoitems;
+            ViewBag.pago = payment;
             foreach (CartItem item in listadoitems)
             {
                 OrderDetail orderdetail = new OrderDetail();
@@ -301,14 +304,14 @@ namespace ArtShop.UI.Ecommerce.Controllers
             }
             cartprocess.EliminarCart(carrito);
 
+            ViewBag.items = listadoitems;
             
-            
-            return pdf;
+            return View("procesar_pago", order);
         }
 
 
 
-        public FileStreamResult crear_pdf(Entities.Model.Order order, List<CartItem> carrito, Shipping ship)
+        public string crear_pdf(Entities.Model.Order order, List<CartItem> carrito, Shipping ship)
         {
             MemoryStream ms = new MemoryStream();
             PdfWriter pw = new PdfWriter(ms);
@@ -327,11 +330,12 @@ namespace ArtShop.UI.Ecommerce.Controllers
             iText.Layout.Element.Cell cell = new iText.Layout.Element.Cell(4, 1).SetTextAlignment(TextAlignment.LEFT).SetBorder(Border.NO_BORDER);
             cell.Add(img.ScaleToFit(150,150));
             table.AddCell(cell);
-            cell = new iText.Layout.Element.Cell(1,2).Add(new Paragraph("Factura No: 0177-" + string.Format("{0:00000000}", order.Id))
-                .SetTextAlignment(TextAlignment.RIGHT).SetBorder(Border.NO_BORDER));
+            cell = new iText.Layout.Element.Cell(1,2).Add(new Paragraph("Factura No: 0177-" + string.Format("{0:00000000}", order.Id)))
+                .SetTextAlignment(TextAlignment.RIGHT)
+                .SetBorder(Border.NO_BORDER);
             table.AddCell(cell);
-            cell = new iText.Layout.Element.Cell(1,2).Add(new Paragraph("Fecha: " + DateTime.Today.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture))
-                .SetTextAlignment(TextAlignment.RIGHT).SetBorder(Border.NO_BORDER));
+            cell = new iText.Layout.Element.Cell(1,2).Add(new Paragraph("Fecha: " + DateTime.Today.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture)))
+                .SetTextAlignment(TextAlignment.RIGHT).SetBorder(Border.NO_BORDER);
             table.AddCell(cell);
 
             doc.Add(table);
@@ -342,8 +346,9 @@ namespace ArtShop.UI.Ecommerce.Controllers
             //doc.Add(ls);
             //Datos Cliente
             iText.Layout.Element.Table _clienttable = new iText.Layout.Element.Table(1).UseAllAvailableWidth().SetMarginTop(20).SetBorder(Border.NO_BORDER);
-                
-            iText.Layout.Element.Cell _clientecell = new iText.Layout.Element.Cell(1, 1).Add(new Paragraph("Nombre: "+ ship.FirstName+" "+ship.LastName))
+
+            iText.Layout.Element.Cell _clientecell = new iText.Layout.Element.Cell(1, 1);
+                cell.Add(new Paragraph("Nombre: "+ ship.FirstName+" "+ship.LastName))
                 .SetTextAlignment(TextAlignment.LEFT)
                 .SetMarginBottom(10).SetBorder(Border.NO_BORDER);
             _clienttable.AddCell(_clientecell);
@@ -429,84 +434,20 @@ namespace ArtShop.UI.Ecommerce.Controllers
             doc.Close();
 
             byte[] byteStream = ms.ToArray();
+            var inputAsString = Convert.ToString(Convert.ToBase64String(ms.ToArray()));
+            
             ms = new MemoryStream();
             ms.Write(byteStream, 0, byteStream.Length);
             ms.Position = 0;
+            var pdf = new FileStreamResult(ms, "application/pdf");
+            
+            /*return new FileStreamResult(ms, "application/pdf")*/;
 
-            return new FileStreamResult(ms, "application/pdf");
-
-
+            return inputAsString.ToString();
 
 
 
         }
-        //public iText.Layout.Element.Table getTable(PdfDocumentEvent docEvent)
-        //{
-        //    float[] cellWidth = { 20f, 80F };
-        //    iText.Layout.Element.Table tableEvent = new iText.Layout.Element.Table(UnitValue.CreatePercentArray(cellWidth)).UseAllAvailableWidth();
-
-        //    iText.Layout.Style stylecell = new iText.Layout.Style()
-        //        .SetBorder(Border.NO_BORDER);
-
-        //    iText.Layout.Style styletext = new iText.Layout.Style()
-        //        .SetTextAlignment(TextAlignment.RIGHT).SetFontSize(10f);
-
-        //    iText.Layout.Element.Cell cell = new Cell().Add();
-
-        //    return tableEvent
-
-        //}
-
-        //public class HeaderEventHandler1 : IEventHandler
-        //{
-        //    iText.Layout.Element.Image Img;
-        //    public HeaderEventHandler1(iText.Layout.Element.Image img)
-        //    {
-        //        Img = img;
-        //    }
-
-        //    public void HandleEvent(Event @event)
-        //    {
-        //        PdfDocumentEvent docEvent = (PdfDocumentEvent)@event;
-        //        PdfDocument pdfDoc = docEvent.GetDocument();
-        //        PdfPage page = docEvent.GetPage();
-        //        Rectangle rootArea = new Rectangle(35, page.GetPageSize().GetTop() - 70, page.GetPageSize().GetRight() - 70, 55);
-
-        //        PdfCanvas canvas1 = new PdfCanvas(page.NewContentStreamBefore(), page.GetResources(), pdfDoc);
-        //        
-        //        new Canvas (canvas1, pdfDoc, rootArea)
-        //            .Add(getTable(docEvent))
-        //            .ShowTextAligned("Factura No: 0177-", 10, 0, TextAlignment.RIGHT)
-
-        //    }
-
-
-        //}
-        //public class HeaderEventHandler1 : IEventHandler
-        //{
-
-        //    Image Img;
-        //    public void HeaderEventHandler(Image img)
-        //    {
-        //        Img = img;
-        //    }
-
-        //    public void HandleEvent(Event @event)
-        //    {
-        //        PdfDocumentEvent docEvent = (PdfDocumentEvent)@event;
-        //        PdfDocument pdfDoc = docEvent.GetDocument();
-        //        PdfPage page = docEvent.GetPage();
-        //        Rectangle rootArea = new Rectangle(35, page.GetPageSize().GetTop() - 70, page.GetPageSize().GetRight() - 70, 55);
-
-        //        PdfCanvas canvas1 = new PdfCanvas(page.NewContentStreamBefore(), page.GetResources(), pdfDoc);
-        //        new Canvas(canvas1, pdfDoc, new Rectangle(rootArea));
-
-
-        //    }
-
-
-
-
-        //}
+        
     }
 }

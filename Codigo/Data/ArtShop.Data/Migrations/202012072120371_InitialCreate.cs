@@ -152,6 +152,7 @@
                         OrderNumber = c.Int(nullable: false),
                         ItemCount = c.Int(nullable: false),
                         ShippingId = c.Int(nullable: false),
+                        Pdf=c.String(nullable:true),
                         Email = c.String(nullable: false, maxLength: 100),
                         Disabled = c.Boolean(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),

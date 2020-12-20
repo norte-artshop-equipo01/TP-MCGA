@@ -88,7 +88,14 @@ namespace ArtShop.Entities.Model
                 get;
                 set;
             }
-
+            [DisplayName("Pdf")]
+            //[MaxLength(128, ErrorMessage = "Image Longitud  128 caracteres")]
+            public string
+              Pdf
+            {
+                get;
+                set;
+            }
 
 
         }

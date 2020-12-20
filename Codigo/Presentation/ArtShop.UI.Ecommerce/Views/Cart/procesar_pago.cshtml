@@ -1,8 +1,58 @@
-﻿@model System.Web.Mvc.FileStreamResult
+﻿@model ArtShop.Entities.Model.Order
+@{ 
+    var item2 = ViewBag.items;
+    
+}
+    @*<div class="row">
+        <div class="col-10 col-lg-8">*@
+    <div class="cart-table-area section-padding-0-100">
+        <div class="container-fluid">
+            <div class="col-12 col-lg-12">
+                <div class="checkout_details_area mt-50 clearfix">
 
-@*<ul>
-    <li>@Model.TransactionAmount</li>
-    <li>@Model.Installments</li>
-    <li>@Model.Id</li>
-    <li>@Model.Status</li>
-</ul>*@
+                    <div class="cart-title">
+                        <h2>Compra confirmada</h2>
+                    </div>
+                    <div>
+                        <h3>
+                            Su número de pedido: @Model.Id
+                        </h3>
+                        @foreach (var item in item2)
+                        {
+                            var total = item.Price * item.Quantity;
+                            <div class="row cart-summarypersonal">
+
+                                <div class="col-4 col-lg-3">
+                                    <img src=@String.Format("data:image/gif;base64,{0}", item.Product.Image) alt="Product" style="max-height:200px">
+                                </div>
+
+                                <div class="col-6 col-lg-9">
+                                    <ul>
+                                        <li><h5>@item.Product.Title</h5>  </li>
+
+                                        <li>Precio: $ @item.Price </li>
+                                        <li>Cantidad: @item.Quantity</li>
+                                        <li>Total: $ @total</li>
+
+                                    </ul>
+                                </div>
+                            </div>
+
+                        }
+                    <div style="align-content:center">
+                        <a download=Factura class="btn amado-btn" style="margin-top:100px" href="data:application/pdf;base64,@Model.Pdf" title='Descargue su Factura'>Descargue su Factura</a>
+                    </div>
+                        <div>
+                            <a class="btn amado-btn" style="margin-top:50px; background-color:blue" href="/home/">Vovler al inicio</a>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+
+        @*<embed src="data:application/pdf;base64;"@Model.Pdf>*@
+        @*<embed src=@String.Format(data:, @Model.Pdf ) type="application/pdf" width="80%" height="600px" />*@
+        @*</div>
+        </div>*@
+    </div>
