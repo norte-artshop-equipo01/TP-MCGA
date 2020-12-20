@@ -1,8 +1,6 @@
-﻿using SparkArtApp.Services;
-using Newtonsoft.Json;
-using System;
+﻿using Newtonsoft.Json;
+using SparkArtApp.Services;
 using System.Collections.Generic;
-using System.Text;
 
 namespace SparkArtApp.Models
 {

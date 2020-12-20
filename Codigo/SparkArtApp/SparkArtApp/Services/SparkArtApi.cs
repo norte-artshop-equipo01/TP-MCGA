@@ -74,6 +74,8 @@ namespace SparkArtApp.Services
             {
                 case Artist _:
                     return url + "artist/";
+                case Product _:
+                    return url + "product/";
                 default:
                     throw new NotSupportedException("Object not supported: " + typeof(T).Name);
             }

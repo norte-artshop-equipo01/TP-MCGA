@@ -2,6 +2,8 @@
 using SparkArtApp.Services;
 using SparkArtApp.ViewModels;
 using System;
+using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -9,16 +11,16 @@ using Xamarin.Forms.Xaml;
 namespace SparkArtApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class ArtistPage : ContentPage
+    public partial class ProductsPage : ContentPage
     {
         public IDataStore DataStore => DependencyService.Get<IDataStore>();
 
-        private readonly ListArtistPage _viewModel;
-        
-        public ArtistPage()
+        private readonly ListProductsPage _viewModel;
+
+        public ProductsPage()
         {
             InitializeComponent();
-            BindingContext = _viewModel = new ListArtistPage(Navigation);
+            BindingContext = _viewModel = new ListProductsPage(Navigation);
         }
 
         protected override void OnAppearing()
@@ -41,36 +43,36 @@ namespace SparkArtApp.Views
             return true;
         }
 
-        private void AddArtist(object sender, EventArgs e)
+        public void AddProduct(object sender, EventArgs e)
         {
-            var newArtist = new Artist
+            var newProduct = new Product
             {
                 CreatedBy = "SparkArtApp",
                 CreatedOn = DateTime.Now,
                 ChangedBy = "SparkArtApp",
                 ChangedOn = DateTime.Now
             };
-            
-            Navigation.PushModalAsync(new EditArtistPage(newArtist));
+
+            Navigation.PushModalAsync(new EditProductPage(newProduct));
         }
 
-        private void EditArtist(object sender, EventArgs e)
+        private void EditProduct(object sender, EventArgs e)
         {
-            var artist = ((MenuItem)sender).CommandParameter as Artist;
-            Navigation.PushModalAsync(new EditArtistPage(artist));
+            var product = ((MenuItem)sender).CommandParameter as Product;
+            Navigation.PushModalAsync(new EditProductPage(product));
         }
 
-        private void DeleteArtist(object sender, EventArgs e)
+        private void DeleteProduct(object sender, EventArgs e)
         {
             Device.BeginInvokeOnMainThread(async () =>
             {
-                var result = await DisplayAlert("Advertencia", "¿Está seguro que desea eliminar el artista seleccionado?", "Si", "No");
+                var result = await DisplayAlert("Advertencia", "¿Está seguro que desea eliminar el producto seleccionado?", "Si", "No");
 
                 if (result)
                 {
-                    var artist = ((MenuItem)sender).CommandParameter as Artist;
-                    await DataStore.DeleteItemAsync<Artist>(artist.Id);
-                    _viewModel.Items.Remove(_viewModel.Items.FirstOrDefault(x => x.Id == artist.Id));
+                    var product = ((MenuItem)sender).CommandParameter as Product;
+                    await DataStore.DeleteItemAsync<Product>(product.Id);
+                    _viewModel.Items.Remove(_viewModel.Items.FirstOrDefault(x => x.Id == product.Id));
                 }
             });
         }

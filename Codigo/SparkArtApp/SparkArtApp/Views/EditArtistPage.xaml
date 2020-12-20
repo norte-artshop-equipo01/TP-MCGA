@@ -10,18 +10,33 @@
                 <Label Text="{Binding Title}" HorizontalTextAlignment="Center" TextColor="White" FontSize="18"/>
             </Frame>
             <StackLayout Padding="16">
-                <Label Text="Nombre" FontSize="Medium" />
-                <Entry Text="{Binding artist.FirstName, Mode=TwoWay}" FontSize="Medium" />
-                <Label Text="Apellido" FontSize="Medium" />
-                <Entry Text="{Binding artist.LastName, Mode=TwoWay}" FontSize="Medium" />
-                <Label Text="Edad" FontSize="Medium" />
-                <Entry Text="{Binding artist.LifeSpan, Mode=TwoWay}" FontSize="Medium" />
-                <Label Text="País" FontSize="Medium" />
-                <Entry Text="{Binding artist.Country, Mode=TwoWay}" FontSize="Medium" />
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="30">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Nombre" FontSize="Medium" />
+                        <Entry Text="{Binding artist.FirstName, Mode=TwoWay}" FontSize="Medium" WidthRequest="175"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Apellido" FontSize="Medium" />
+                        <Entry Text="{Binding artist.LastName, Mode=TwoWay}" FontSize="Medium" WidthRequest="175"/>
+                    </StackLayout>
+                </StackLayout>
+
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="30">
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="País" FontSize="Medium" />
+                        <Entry Text="{Binding artist.Country, Mode=TwoWay}" FontSize="Medium" WidthRequest="175"/>
+                    </StackLayout>
+                    <StackLayout Orientation="Vertical">
+                        <Label Text="Edad" FontSize="Medium" />
+                        <Entry Text="{Binding artist.LifeSpan, Mode=TwoWay}" FontSize="Medium" WidthRequest="175"/>
+                    </StackLayout>
+                </StackLayout>
+                
+                <Label Text="Cantidad de Productos" FontSize="Medium" />
+                <Entry Text="{Binding artist.TotalProducts, Mode=TwoWay}" FontSize="Medium" WidthRequest="50"/>
                 <Label Text="Descripción" FontSize="Medium" />
-                <Entry Text="{Binding artist.Description, Mode=TwoWay}" FontSize="Medium" />
-                <Label Text="Total de Productos" FontSize="Medium" />
-                <Entry Text="{Binding artist.TotalProducts, Mode=TwoWay}" FontSize="Medium" />
+                <Editor Text="{Binding artist.Description, Mode=TwoWay}" FontSize="Medium" />
 
                 <StackLayout Orientation="Horizontal">
                     <Button Text="Cancelar" Command="{Binding CancelCommand}" HorizontalOptions="FillAndExpand"></Button>

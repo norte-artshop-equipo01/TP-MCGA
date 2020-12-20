@@ -50,13 +50,13 @@ namespace SparkArtApp.ViewModels
         private async void OnUpdateArtistAsync()
         {
             await DataStore.UpdateItemAsync(_artist);
-            Application.Current.MainPage = new NavigationPage(new ItemsPage());
+            Application.Current.MainPage = new NavigationPage(new ArtistPage());
         }
 
         private async void OnAddArtistAsync()
         {
             await DataStore.AddItemAsync(_artist);
-            Application.Current.MainPage = new NavigationPage(new ItemsPage());
+            Application.Current.MainPage = new NavigationPage(new ArtistPage());
         }
 
         private async void OnCancel(object obj)

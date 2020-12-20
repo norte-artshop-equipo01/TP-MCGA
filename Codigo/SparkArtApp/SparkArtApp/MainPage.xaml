@@ -5,7 +5,7 @@
 
     <StackLayout>
         <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Image Source="http://norte-mcga-grupo01.somee.com/Content/assets/img/core-img/logo.png"/>
+            <Image Source="https://lh4.googleusercontent.com/Rrjb2J6MT5c5TBLm8b8cI5ca2bTtxlMivUHXTql0QvD-1AOY30abWYH5Co8Nmn4dcqUg6oXp50S3zr2omB1I=w3768-h1850"/>
         </Frame>
         <Label Text="Aplicación de alta, baja, y modificación para el sitio SparkArt" FontSize="16" Padding="30,0,30,0"/>
         <Label FontSize="16" Padding="30,24,30,0">
@@ -20,7 +20,7 @@
         </Label>
 
         <Button Text="Ver listado de Artistas" Clicked="ShowArtist_OnClicked" Margin="30"></Button>
-        <Button Text="Ver listado de Productos" Clicked="ShowArtist_OnClicked" Margin="30"></Button>
+        <Button Text="Ver listado de Productos" Clicked="ShowProducts_OnClicked" Margin="30"></Button>
     </StackLayout>
 
 </ContentPage>
