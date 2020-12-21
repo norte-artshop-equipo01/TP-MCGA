@@ -27,6 +27,11 @@ using iText.IO.Font.Constants;
 using iText.Kernel.Colors;
 using iText.Layout.Borders;
 using System.Globalization;
+using System.Net.Mail;
+using System.Net.Mime;
+using System.Text;
+using System.Net;
+using Path = System.IO.Path;
 
 namespace ArtShop.UI.Ecommerce.Controllers
 {
@@ -289,6 +294,7 @@ namespace ArtShop.UI.Ecommerce.Controllers
             var pdf=crear_pdf(order, listadoitems, ship);
             order.Pdf = pdf;
             orderprocess.EditarOrder(order);
+            enviarmail(order);
             ViewBag.items = listadoitems;
             ViewBag.pago = payment;
             foreach (CartItem item in listadoitems)
@@ -447,5 +453,45 @@ namespace ArtShop.UI.Ecommerce.Controllers
 
         }
         
+        public void enviarmail(Entities.Model.Order order)
+        {
+
+        
+        try
+            {
+                //string filename = @"C:\Users\Paul\Documents\test.txt";
+                //Attachment pdfb64 = new Attachment(Convert.ToBase64String(byte[] (order.Pdf));
+                //pdfb64.TransferEncoding = TransferEncoding.Base64;
+                byte[] stemp = Convert.FromBase64String(order.Pdf);
+                Stream stream = new MemoryStream(stemp);
+                
+                //Attachment data = new Attachment(byte, MediaTypeNames.Application.Octet);
+
+                SmtpClient client = new SmtpClient();
+        client.Port = 587;
+                // utilizamos el servidor SMTP de gmail
+                client.Host = "smtp.gmail.com";
+                client.EnableSsl = true;
+                client.Timeout = 10000;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                // nos autenticamos con nuestra cuenta de gmail
+                client.Credentials = new NetworkCredential("sparkartmcga@gmail.com", "MCGA2020!");
+
+        MailMessage mail = new MailMessage("sparkartmcga@gmail.com", order.CreatedBy, "Spark-Art", "Gracias por su compra. Adjunta enviamos su fatura del pedido N° "+order.Id);
+                mail.Attachments.Add(new Attachment(stream, Path.GetFileName("Factura.pdf"), "application/pdf"));
+                //mail.Attachments.Add(pdfb64);
+                mail.BodyEncoding = UTF8Encoding.UTF8;
+                mail.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+                //mail.Attachments.Add(data);
+                client.Send(mail);
+
+                
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+        }
     }
 }
