@@ -1,5 +1,4 @@
 ﻿using SparkArtApp.Models;
-using SparkArtApp.Views;
 using System;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
@@ -46,7 +45,6 @@ namespace SparkArtApp.ViewModels
             catch (Exception ex)
             {
                 Debug.WriteLine(ex);
-
             }
         }
     }

@@ -71,12 +71,6 @@ namespace SparkArtApp.Services
                 throw new HttpRequestException("Error while calling " + requestUrl);
         }
 
-        //private async Task Test<T>()
-        //{
-        //    var requestUrl = GetModelUrl<T>();
-        //    var json = JsonConvert.SerializeObject(item);
-        //}
-
         private static string GetModelUrl<T>()
         {
             object item = Activator.CreateInstance(typeof(T));

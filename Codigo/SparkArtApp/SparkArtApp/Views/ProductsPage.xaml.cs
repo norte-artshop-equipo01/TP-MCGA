@@ -2,8 +2,6 @@
 using SparkArtApp.Services;
 using SparkArtApp.ViewModels;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;

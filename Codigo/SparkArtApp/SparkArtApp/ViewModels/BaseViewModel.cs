@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SparkArtApp.Services;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using SparkArtApp.Models;
-using SparkArtApp.Services;
 using Xamarin.Forms;
 
 namespace SparkArtApp.ViewModels
@@ -18,8 +14,15 @@ namespace SparkArtApp.ViewModels
 
         protected void NotifyPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        #endregion
+        #region Fields
+
+        private string _title;
+
+        #endregion
 
         protected async void OnCancel(INavigation navigation, object obj)
         {
@@ -31,24 +34,13 @@ namespace SparkArtApp.ViewModels
             }
         }
 
-
-        #endregion
-
-
-        #region Fields
-
-        private string _title;
-
-        #endregion
-
-
         public string Title
         {
             get => _title;
             set
             {
                 _title = value;
-                this.NotifyPropertyChanged();
+                NotifyPropertyChanged();
             }
         }
     }
