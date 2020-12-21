@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace SparkArtApp.Services
@@ -10,7 +8,7 @@ namespace SparkArtApp.Services
         Task AddItemAsync<T>(T item);
         Task UpdateItemAsync<T>(T item);
         Task DeleteItemAsync<T>(int id);
-        Task<T> GetItemAsync<T>(Guid id);
+        Task<T> GetItemAsync<T>(int id);
         Task<List<T>> GetItemsAsync<T>();
     }
 }

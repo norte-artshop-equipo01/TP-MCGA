@@ -1,5 +1,8 @@
-﻿using SparkArtApp.Views;
+﻿using SparkArtApp.Models;
+using SparkArtApp.Views;
 using System;
+using System.Collections.ObjectModel;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace SparkArtApp
@@ -13,12 +16,17 @@ namespace SparkArtApp
 
         private void ShowArtist_OnClicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new NavigationPage(new ItemsPage());
+            Application.Current.MainPage = new NavigationPage(new ArtistPage());
         }
 
         private void ShowProducts_OnClicked(object sender, EventArgs e)
         {
-            Application.Current.MainPage = new NavigationPage(new ItemsPage());
+            Application.Current.MainPage = new NavigationPage(new ProductsPage());
+        }
+
+        private async void Tapped(object sender, EventArgs e)
+        {
+            await Launcher.OpenAsync(new Uri("https://norte-mcga-ecomm-grupo01.azurewebsites.net"));
         }
     }
 }

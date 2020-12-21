@@ -7,10 +7,10 @@ using Xamarin.Forms;
 
 namespace SparkArtApp.ViewModels
 {
-    public class ListArtistPage : BaseViewModel
+    public class ListProductsPage : BaseViewModel
     {
-        private ObservableCollection<Artist> _items;
-        public ObservableCollection<Artist> Items
+        private ObservableCollection<Product> _items;
+        public ObservableCollection<Product> Items
         {
             get => _items;
             set
@@ -22,13 +22,12 @@ namespace SparkArtApp.ViewModels
         public Command LoadItemsCommand { get; }
         public INavigation Navigation { get; set; }
 
-
-        public ListArtistPage(INavigation navigation)
+        public ListProductsPage(INavigation navigation)
         {
-            Title = "Lista de Artistas";
-            Items= new ObservableCollection<Artist>();
+            Title = "Lista de Productos";
+            Items = new ObservableCollection<Product>();
             Navigation = navigation;
-            LoadItemsCommand = new Command(async ()=> await ExecuteLoadItemsCommand());
+            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
         }
 
         private async Task ExecuteLoadItemsCommand()
@@ -36,10 +35,10 @@ namespace SparkArtApp.ViewModels
             try
             {
                 Items.Clear();
-                var artists = await DataStore.GetItemsAsync<Artist>();
-                foreach (var artist in artists)
+                var products = await DataStore.GetItemsAsync<Product>();
+                foreach (var product in products)
                 {
-                    Items.Add(artist);
+                    Items.Add(product);
                 }
             }
             catch (Exception ex)
