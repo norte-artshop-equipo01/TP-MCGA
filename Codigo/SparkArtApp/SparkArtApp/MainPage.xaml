@@ -4,7 +4,7 @@
              xmlns:viewmodels="clr-namespace:SparkArtApp.ViewModels"
              x:Class="SparkArtApp.MainPage">
     <ContentPage.BindingContext>
-        <viewmodels:MonkeysViewModel />
+        <viewmodels:MainPageViewModel />
     </ContentPage.BindingContext>
     <StackLayout>
         <Frame BackgroundColor="#2196F3" Padding="10" CornerRadius="0">
