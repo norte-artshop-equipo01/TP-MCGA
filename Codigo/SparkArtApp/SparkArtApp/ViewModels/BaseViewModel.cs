@@ -21,6 +21,16 @@ namespace SparkArtApp.ViewModels
             this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        protected async void OnCancel(INavigation navigation, object obj)
+        {
+            var result = await Application.Current.MainPage.DisplayAlert("", "¿Está seguro que desea salir sin guardar los cambios?", "Si", "No");
+
+            if (result)
+            {
+                await navigation.PopModalAsync(true);
+            }
+        }
+
 
         #endregion
 

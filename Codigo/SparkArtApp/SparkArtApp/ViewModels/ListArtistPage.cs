@@ -21,7 +21,6 @@ namespace SparkArtApp.ViewModels
             }
         }
         public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get; }
         public INavigation Navigation { get; set; }
 
 
@@ -31,18 +30,13 @@ namespace SparkArtApp.ViewModels
             Items= new ObservableCollection<Artist>();
             Navigation = navigation;
             LoadItemsCommand = new Command(async ()=> await ExecuteLoadItemsCommand());
-            AddItemCommand = new Command(OnAddItem);
-        }
-
-        private async void OnAddItem(object obj)
-        {
-            await Navigation.PushModalAsync(new NewItemPage());
         }
 
         private async Task ExecuteLoadItemsCommand()
         {
             try
             {
+                Items.Clear();
                 var artists = await DataStore.GetItemsAsync<Artist>();
                 foreach (var artist in artists)
                 {

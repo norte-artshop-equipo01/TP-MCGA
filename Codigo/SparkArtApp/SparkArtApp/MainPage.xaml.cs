@@ -1,4 +1,5 @@
-﻿using SparkArtApp.Services;
+﻿using Plugin.Toasts;
+using SparkArtApp.Services;
 using SparkArtApp.Views;
 using System;
 using System.Collections.Generic;

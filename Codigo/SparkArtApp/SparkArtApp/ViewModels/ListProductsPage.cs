@@ -1,10 +1,7 @@
 ﻿using SparkArtApp.Models;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
 
@@ -23,7 +20,6 @@ namespace SparkArtApp.ViewModels
             }
         }
         public Command LoadItemsCommand { get; }
-        public Command AddItemCommand { get; }
         public INavigation Navigation { get; set; }
 
         public ListProductsPage(INavigation navigation)
@@ -32,18 +28,13 @@ namespace SparkArtApp.ViewModels
             Items = new ObservableCollection<Product>();
             Navigation = navigation;
             LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
-            AddItemCommand = new Command(OnAddItem);
-        }
-
-        private async void OnAddItem(object obj)
-        {
-            //await Navigation.PushModalAsync(new NewItemPage());
         }
 
         private async Task ExecuteLoadItemsCommand()
         {
             try
             {
+                Items.Clear();
                 var products = await DataStore.GetItemsAsync<Product>();
                 foreach (var product in products)
                 {

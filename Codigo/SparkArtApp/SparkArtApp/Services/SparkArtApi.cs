@@ -38,9 +38,15 @@ namespace SparkArtApp.Services
                 throw new HttpRequestException("Error while calling " + requestUrl);
         }
 
-        public async Task<T> GetItemAsync<T>(Guid id)
+        public async Task<T> GetItemAsync<T>(int id)
         {
-            throw new NotImplementedException();
+            var requestUrl = GetModelUrl<T>();
+            var response = await client.GetAsync(requestUrl + "getbyid?id=" + id.ToString());
+            if (!response.IsSuccessStatusCode)
+                throw new HttpRequestException("Error while calling " + requestUrl);
+
+            string content = response.Content.ReadAsStringAsync().Result;
+            return JsonConvert.DeserializeObject<T>(content);
         }
 
         public async Task<List<T>> GetItemsAsync<T>()
@@ -64,6 +70,12 @@ namespace SparkArtApp.Services
             if (!response.IsSuccessStatusCode)
                 throw new HttpRequestException("Error while calling " + requestUrl);
         }
+
+        //private async Task Test<T>()
+        //{
+        //    var requestUrl = GetModelUrl<T>();
+        //    var json = JsonConvert.SerializeObject(item);
+        //}
 
         private static string GetModelUrl<T>()
         {
