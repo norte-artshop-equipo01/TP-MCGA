@@ -56,5 +56,16 @@ namespace ArtShop.Business
 
             db.Delete(order.Id);
         }
+
+        public List<Order> GetbyCookie(string cookie)
+        {
+            var orderlist = db.Get(x => x.Email == cookie);
+            foreach (Order order in orderlist)
+            {
+                order.OrderDetail = db2.Get(x => x.OrderId == order.Id).ToList();
+            }
+                           
+                return orderlist;
+        }
     }
 }

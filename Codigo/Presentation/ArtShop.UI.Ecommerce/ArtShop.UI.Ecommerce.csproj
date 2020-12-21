@@ -222,6 +222,7 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\RolesAdminController.cs" />
     <Compile Include="Controllers\UserAdminController.cs" />
@@ -265,6 +266,7 @@
     <Content Include="Content\assets\img\core-img\logo-footer.png" />
     <Content Include="Content\assets\img\core-img\logo.png" />
     <Content Include="Content\assets\img\core-img\paypal.png" />
+    <Content Include="Content\assets\img\core-img\pdf-download.png" />
     <Content Include="Content\assets\img\core-img\search.png" />
     <Content Include="Content\assets\img\core-img\trash.png" />
     <Content Include="Content\assets\img\product-img\pro-big-1.jpg" />
@@ -511,6 +513,7 @@
     <Content Include="Views\Cart\AddShipping.cshtml" />
     <Content Include="Views\Cart\procesar_pago.cshtml" />
     <Content Include="Views\Cart\cerrar_orden.cshtml" />
+    <Content Include="Views\Order\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

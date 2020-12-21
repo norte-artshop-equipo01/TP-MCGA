@@ -33,6 +33,11 @@ namespace ArtShop.UI.Process
             return response;
 
         }
+        public List<Order> GetByCookie(string cookie)
+        {
+            var response = HttpGet<List<Order>>("/api/Order/GetByCookie", cookie, MediaType.Json);
+            return response;
+        }
 
         public void EliminarOrder(Order order)
         {

@@ -113,6 +113,26 @@ namespace ArtShop.Services.Http
                 throw new HttpResponseException(httpError);
             }
         }
+        [HttpGet]
+        [Route("GetByCookie")]
+        public List<Order> GetByCookie(string cookie)
+        {
+            try
+            {
+                var orderbs = new OrderBusiness();
+                return orderbs.GetbyCookie(cookie);
+            }
+            catch (Exception ex)
+            {
+                var httpError = new HttpResponseMessage()
+                {
+                    StatusCode = (HttpStatusCode)422,
+                    ReasonPhrase = ex.Message
+                };
+
+                throw new HttpResponseException(httpError);
+            }
+        }
 
         [HttpPost]
         [Route("Agregar_Linea_Orden")]

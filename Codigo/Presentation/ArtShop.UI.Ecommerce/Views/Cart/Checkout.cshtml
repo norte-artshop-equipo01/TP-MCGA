@@ -73,29 +73,31 @@ var ship = ViewBag.Ship;
 
             </div>
         </div>
-        <div class="row cart-summarypersonal" cart-summarypersonal" @*data-bind="Shipping"*@>
-            <div class="cart-title mt-50">
-                <h2>Envío y Facturación</h2>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label data-bind="text: ship.FirstName">FirstName</label>
-            </div>
-            <div class="col-md-6 mb-3">
-                <p data-bind="text: ship.LastName"></p>
-            </div>
-            <div class="col-md-6 mb-3">
-                <p data-bind="text: ship.Email">a</p>
-            </div>
-            <div class="col-md-6 mb-3">
-                <p data-bind="text: ship.Address">a</p>
-            </div>
-            <div class="col-md-6 mb-3">
-                <p data-bind="text: ship.City"></p>
-            </div>
-            <div class="col-md-6 mb-3">
-                <p data-bind="text: ship.Country"></p>
-            </div>
-        </div>
+
+        @*<div class="row "  data-bind="Ship">
+            <div class="col-8 col-lg-8">
+                <div class="cart-title mt-50">
+                    <h2>Datos de Facturación</h2>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label>@ship</label>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p data-bind="text: ship.LastName"></p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p data-bind="text: ship.Email">a</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p data-bind="text: ship.Address">a</p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p data-bind="text: ship.City"></p>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <p data-bind="text: ship.Country"></p>
+                </div>
+            </div>*@
     </div>
 </div>
 <script src="~/Scripts/knockout-3.5.1.js"></script>

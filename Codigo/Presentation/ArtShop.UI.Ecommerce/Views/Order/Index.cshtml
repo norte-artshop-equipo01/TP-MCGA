@@ -1,0 +1,61 @@
+﻿@model IEnumerable<ArtShop.Entities.Model.Order>
+
+
+
+    <div class="cart-table-area ">
+        <div class="container-fluid">
+
+            <div class="row">
+                <div class="col-12 col-lg-12">
+                    <div class="cart-title mt-50">
+                        <h2>Mis pedidos</h2>
+                    </div>
+                    <div class="cart-table clearfix">
+                         <table class="table table-responsive">
+                             <thead style="font-size:">
+                                 <tr>
+                                     <th>
+                                         @Html.DisplayName("Fecha")
+                                     </th>
+                                     <th>
+                                         @Html.DisplayName("Total")
+                                     </th>
+                                     <th>
+                                         @Html.DisplayName("Pedido #")
+                                     </th>                                                            
+                                     
+                                     <th>
+                                         @Html.DisplayName("Descargar Factura")
+                                     </th>
+                                     
+                                 </tr>
+                             </thead>
+                             <tbody>
+                                 @foreach (var item in Model)
+                                 {
+                                     <tr>
+                        
+                                         <td>
+                                             @Html.DisplayFor(modelItem => item.OrderDate)
+                                         </td>
+                                         <td>
+                                             @Html.DisplayFor(modelItem => item.TotalPrice)
+                                         </td>
+                                         <td>
+                                             @Html.DisplayFor(modelItem => item.Id)
+                                         </td>
+                                         
+                                         <td>
+                                             <a download=Factura  href="data:application/pdf;base64, @item.Pdf" title='Descargue su Factura'><img style="max-height:50px" src="~/Content/assets/img/core-img/pdf-download.png" /></a>
+                                         </td>
+                        
+                                     </tr>
+                                 }
+                             </tbody>
+                         </table>
+                     </div>
+                 </div>
+             </div>
+        </div>
+    </div>
+

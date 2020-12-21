@@ -324,31 +324,28 @@ namespace ArtShop.UI.Ecommerce.Controllers
             string pathlogo = Server.MapPath("~/Content/assets/img/core-img/logo.png");
             iText.Layout.Element.Image img = new iText.Layout.Element.Image(ImageDataFactory.Create(pathlogo));
 
-            //pdfdocument.AddEventHandler(PdfDocumentEvent.START_PAGE, new HeaderEventHandler1(img));
-
-            iText.Layout.Element.Table table = new iText.Layout.Element.Table(2).UseAllAvailableWidth().SetBorder(Border.NO_BORDER);
+            //Cabecera
+            iText.Layout.Element.Cell separador = new iText.Layout.Element.Cell(1, 1);
+            iText.Layout.Element.Table table = new iText.Layout.Element.Table(2).UseAllAvailableWidth()/*.SetBorder(Border.NO_BORDER)*/;
             iText.Layout.Element.Cell cell = new iText.Layout.Element.Cell(4, 1).SetTextAlignment(TextAlignment.LEFT).SetBorder(Border.NO_BORDER);
             cell.Add(img.ScaleToFit(150,150));
             table.AddCell(cell);
-            cell = new iText.Layout.Element.Cell(1,2).Add(new Paragraph("Factura No: 0177-" + string.Format("{0:00000000}", order.Id)))
+            cell = new iText.Layout.Element.Cell(2,2).Add(new Paragraph("Factura No: 0177-" + string.Format("{0:00000000}", order.Id)))
                 .SetTextAlignment(TextAlignment.RIGHT)
                 .SetBorder(Border.NO_BORDER);
             table.AddCell(cell);
-            cell = new iText.Layout.Element.Cell(1,2).Add(new Paragraph("Fecha: " + DateTime.Today.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture)))
+            cell = new iText.Layout.Element.Cell(2,2).Add(new Paragraph("Fecha: " + DateTime.Today.ToString("dd-MM-yyyy", CultureInfo.InvariantCulture)))
                 .SetTextAlignment(TextAlignment.RIGHT).SetBorder(Border.NO_BORDER);
             table.AddCell(cell);
-
-            doc.Add(table);
-           //separador
-            //Line line = new Line();
             
-            //var ls = new LineSeparator(Line.SetWidth(3);
-            //doc.Add(ls);
-            //Datos Cliente
-            iText.Layout.Element.Table _clienttable = new iText.Layout.Element.Table(1).UseAllAvailableWidth().SetMarginTop(20).SetBorder(Border.NO_BORDER);
+            doc.Add(table);
+            
 
+            //Datos Cliente
+            iText.Layout.Element.Table _clienttable = new iText.Layout.Element.Table(1).UseAllAvailableWidth().SetMarginTop(20)/*.SetBorder(Border.NO_BORDER)*/;
+            _clienttable.AddCell(separador);
             iText.Layout.Element.Cell _clientecell = new iText.Layout.Element.Cell(1, 1);
-                cell.Add(new Paragraph("Nombre: "+ ship.FirstName+" "+ship.LastName))
+            _clientecell.Add(new Paragraph("Nombre: "+ ship.FirstName+" "+ship.LastName))
                 .SetTextAlignment(TextAlignment.LEFT)
                 .SetMarginBottom(10).SetBorder(Border.NO_BORDER);
             _clienttable.AddCell(_clientecell);
@@ -365,12 +362,13 @@ namespace ArtShop.UI.Ecommerce.Controllers
             _clientecell = new iText.Layout.Element.Cell(1, 1).Add(new Paragraph("Email: " + ship.Email))
                 .SetTextAlignment(TextAlignment.LEFT).SetMarginBottom(10).SetBorder(Border.NO_BORDER); 
             _clienttable.AddCell(_clientecell);
+            _clienttable.AddCell(separador);
             doc.Add(_clienttable);
 
             
             //doc.Add(ls);
             //Datos Product Encabezado
-            iText.Layout.Element.Table _prodtable = new iText.Layout.Element.Table(6).UseAllAvailableWidth().SetMarginTop(20).SetBorder(Border.NO_BORDER);
+            iText.Layout.Element.Table _prodtable = new iText.Layout.Element.Table(6).UseAllAvailableWidth().SetMarginTop(20)/*.SetBorder(Border.NO_BORDER)*/;
 
             iText.Layout.Element.Cell _prodecell = new iText.Layout.Element.Cell(1, 1).Add(new Paragraph("# Item"))
                 .SetTextAlignment(TextAlignment.CENTER)
@@ -420,7 +418,7 @@ namespace ArtShop.UI.Ecommerce.Controllers
             doc.Add(_prodtable);
 
             //Total 
-            iText.Layout.Element.Table totaltable = new iText.Layout.Element.Table(1).UseAllAvailableWidth().SetMarginTop(20).SetBorder(Border.NO_BORDER);
+            iText.Layout.Element.Table totaltable = new iText.Layout.Element.Table(1).UseAllAvailableWidth().SetMarginTop(20)/*.SetBorder(Border.NO_BORDER)*/;
 
             iText.Layout.Element.Cell totalcell = new iText.Layout.Element.Cell(1, 1).Add(new Paragraph("Total: $" +order.TotalPrice))
                 .SetTextAlignment(TextAlignment.RIGHT)
