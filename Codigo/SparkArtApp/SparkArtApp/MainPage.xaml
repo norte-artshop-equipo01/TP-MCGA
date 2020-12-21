@@ -5,22 +5,34 @@
 
     <StackLayout>
         <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Image Source="http://norte-mcga-grupo01.somee.com/Content/assets/img/core-img/logo.png"/>
+            <Image Source="https://lh4.googleusercontent.com/Rrjb2J6MT5c5TBLm8b8cI5ca2bTtxlMivUHXTql0QvD-1AOY30abWYH5Co8Nmn4dcqUg6oXp50S3zr2omB1I=w3768-h1850"/>
         </Frame>
-        <Label Text="Aplicación de alta, baja, y modificación para el sitio SparkArt" FontSize="16" Padding="30,0,30,0"/>
-        <Label FontSize="16" Padding="30,24,30,0">
+
+        <Label FontSize="16" Padding="30,0,30,0">
             <Label.FormattedText>
                 <FormattedString>
-                    <FormattedString.Spans>
-                        <Span Text="Learn more at "/>
-                        <Span Text="https://aka.ms/xamarin-quickstart" FontAttributes="Bold"/>
-                    </FormattedString.Spans>
+                    <Span Text="Aplicación de alta, baja, y modificación para el sitio " />
+                    <Span Text="SparkArt"
+                  TextColor="Blue"
+                  TextDecorations="Underline">
+                        <Span.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="Tapped"/>
+                        </Span.GestureRecognizers>
+                    </Span>
                 </FormattedString>
             </Label.FormattedText>
         </Label>
 
-        <Button Text="Ver listado de Artistas" Clicked="ShowArtist_OnClicked" Margin="30"></Button>
-        <Button Text="Ver listado de Productos" Clicked="ShowArtist_OnClicked" Margin="30"></Button>
+        <Label Text="Esta aplicación ha sido desarrollada por el equipo 1 de MCGA 2020:" Padding="30,0,30,0"/>
+        <Label Text="• Emanuel Leardi" FontAttributes="Bold" Padding="30,0,30,0"/>
+        <Label Text="• Jonatan Schmidt" FontAttributes="Bold" Padding="30,0,30,0"/>
+        <Label Text="• Ricardo Goffi" FontAttributes="Bold" Padding="30,0,30,0"/>
+        <Label Text="• Víctor Grycuk" FontAttributes="Bold" Padding="30,0,30,0"/>
+
+        <StackLayout Orientation="Horizontal">
+            <Button Text="ABM de Artistas" Clicked="ShowArtist_OnClicked" Margin="30, 30, 30, 0"></Button>
+            <Button Text="ABM de Productos" Clicked="ShowProducts_OnClicked" Margin="0, 30, 0, 0"></Button>
+        </StackLayout>
     </StackLayout>
 
 </ContentPage>

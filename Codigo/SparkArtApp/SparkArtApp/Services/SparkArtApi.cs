@@ -38,9 +38,15 @@ namespace SparkArtApp.Services
                 throw new HttpRequestException("Error while calling " + requestUrl);
         }
 
-        public async Task<T> GetItemAsync<T>(Guid id)
+        public async Task<T> GetItemAsync<T>(int id)
         {
-            throw new NotImplementedException();
+            var requestUrl = GetModelUrl<T>();
+            var response = await client.GetAsync(requestUrl + "getbyid?id=" + id.ToString());
+            if (!response.IsSuccessStatusCode)
+                throw new HttpRequestException("Error while calling " + requestUrl);
+
+            string content = response.Content.ReadAsStringAsync().Result;
+            return JsonConvert.DeserializeObject<T>(content);
         }
 
         public async Task<List<T>> GetItemsAsync<T>()
@@ -74,6 +80,8 @@ namespace SparkArtApp.Services
             {
                 case Artist _:
                     return url + "artist/";
+                case Product _:
+                    return url + "product/";
                 default:
                     throw new NotSupportedException("Object not supported: " + typeof(T).Name);
             }
