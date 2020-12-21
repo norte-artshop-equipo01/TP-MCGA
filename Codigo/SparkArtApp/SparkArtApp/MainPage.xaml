@@ -1,38 +1,76 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:SparkArtApp.ViewModels"
              x:Class="SparkArtApp.MainPage">
-
+    <ContentPage.BindingContext>
+        <viewmodels:MonkeysViewModel />
+    </ContentPage.BindingContext>
     <StackLayout>
-        <Frame BackgroundColor="#2196F3" Padding="24" CornerRadius="0">
-            <Image Source="https://lh4.googleusercontent.com/Rrjb2J6MT5c5TBLm8b8cI5ca2bTtxlMivUHXTql0QvD-1AOY30abWYH5Co8Nmn4dcqUg6oXp50S3zr2omB1I=w3768-h1850"/>
+        <Frame BackgroundColor="#2196F3" Padding="10" CornerRadius="0">
+            <Image Source="https://norte-mcga-ecomm-grupo01.azurewebsites.net/Content/assets/img/core-img/logo.png"/>
         </Frame>
+        <ScrollView Orientation="Vertical">
+            <StackLayout>
+                <Label FontSize="16" Padding="30,0,30,0">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Text="Aplicación de alta, baja, y modificación para el sitio " />
+                            <Span Text="SparkArt"
+                      TextColor="Blue"
+                      TextDecorations="Underline">
+                                <Span.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="Tapped"/>
+                                </Span.GestureRecognizers>
+                            </Span>
+                            <Span Text=". Esta aplicación ha sido desarrollada por el equipo 1 de MCGA 2020:"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
 
-        <Label FontSize="16" Padding="30,0,30,0">
-            <Label.FormattedText>
-                <FormattedString>
-                    <Span Text="Aplicación de alta, baja, y modificación para el sitio " />
-                    <Span Text="SparkArt"
-                  TextColor="Blue"
-                  TextDecorations="Underline">
-                        <Span.GestureRecognizers>
-                            <TapGestureRecognizer Tapped="Tapped"/>
-                        </Span.GestureRecognizers>
-                    </Span>
-                </FormattedString>
-            </Label.FormattedText>
-        </Label>
+                <Label Text="Emanuel Leardi, Jonatan Schmidt, Ricardo Goffi, Víctor Grycuk" FontAttributes="Bold" Padding="30,0,30,0"/>
 
-        <Label Text="Esta aplicación ha sido desarrollada por el equipo 1 de MCGA 2020:" Padding="30,0,30,0"/>
-        <Label Text="• Emanuel Leardi" FontAttributes="Bold" Padding="30,0,30,0"/>
-        <Label Text="• Jonatan Schmidt" FontAttributes="Bold" Padding="30,0,30,0"/>
-        <Label Text="• Ricardo Goffi" FontAttributes="Bold" Padding="30,0,30,0"/>
-        <Label Text="• Víctor Grycuk" FontAttributes="Bold" Padding="30,0,30,0"/>
+                <CarouselView x:Name="carouselView" ItemsSource="{Binding Products}">
+                    <CarouselView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout>
+                                <Frame HasShadow="True"
+                                   BorderColor="DarkGray"
+                                   CornerRadius="5"
+                                   Margin="30,0,30,0"
+                                   HeightRequest="500"
+                                   HorizontalOptions="CenterAndExpand"
+                                   VerticalOptions="CenterAndExpand">
+                                    <SwipeView>
+                                        <StackLayout>
+                                            <Label Text="{Binding Title}" 
+                                               FontAttributes="Bold"
+                                               FontSize="Medium"
+                                               HorizontalOptions="Center"
+                                               VerticalOptions="Center" />
+                                            <Image Source="{Binding ImageSource}" 
+                                               Aspect="AspectFit"
+                                               HeightRequest="300"
+                                               WidthRequest="400"
+                                               HorizontalOptions="Center" />
+                                            <Label Text="{Binding Description}"
+                                               FontSize="Small"
+                                               FontAttributes="Italic"
+                                               HorizontalOptions="Center"
+                                               LineBreakMode="WordWrap" />
+                                        </StackLayout>
+                                    </SwipeView>
+                                </Frame>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CarouselView.ItemTemplate>
+                </CarouselView>
+            </StackLayout>
+        </ScrollView>
 
         <StackLayout Orientation="Horizontal">
-            <Button Text="ABM de Artistas" Clicked="ShowArtist_OnClicked" Margin="30, 30, 30, 0"></Button>
-            <Button Text="ABM de Productos" Clicked="ShowProducts_OnClicked" Margin="0, 30, 0, 0"></Button>
+            <Button Text="ABM de Artistas" Clicked="ShowArtist_OnClicked" Margin="30, 0, 0, 0"></Button>
+            <Button Text="ABM de Productos" Clicked="ShowProducts_OnClicked" Margin="0, 0, 0, 0"></Button>
         </StackLayout>
     </StackLayout>
-
 </ContentPage>

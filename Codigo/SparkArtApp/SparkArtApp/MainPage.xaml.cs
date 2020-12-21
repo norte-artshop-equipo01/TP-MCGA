@@ -1,5 +1,7 @@
-﻿using SparkArtApp.Views;
+﻿using SparkArtApp.Models;
+using SparkArtApp.Views;
 using System;
+using System.Collections.ObjectModel;
 using Xamarin.Essentials;
 using Xamarin.Forms;
 

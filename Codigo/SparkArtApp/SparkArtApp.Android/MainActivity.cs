@@ -15,6 +15,7 @@ namespace SparkArtApp.Android
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+            Forms.SetFlags(new string[] { "CarouselView_Experimental", "SwipeView_Experimental" });
 
             base.OnCreate(savedInstanceState);
 
