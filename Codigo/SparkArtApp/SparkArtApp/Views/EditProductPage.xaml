@@ -24,7 +24,7 @@
                     <Label Text="ID de Artista" FontSize="Medium" />
                     <Entry Text="{Binding product.ArtistId, Mode=TwoWay}" FontSize="Medium" />
 
-                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="20">
+                    <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10">
                         <StackLayout Orientation="Vertical">
                             <Label Text="Precio" FontSize="Medium" />
                             <Entry Text="{Binding product.Price, Mode=TwoWay}" FontSize="Medium" />
